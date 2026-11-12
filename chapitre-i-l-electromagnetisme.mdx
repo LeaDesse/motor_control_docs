@@ -1,0 +1,60 @@
+---
+title: "CHAPITRE I : L’électromagnétisme"
+---
+
+# La force de Laplace
+
+Un flux d’électrons, c’est-à-dire un courant électrique $$I$$, circulant dans un conducteur, par exemple un fil de cuivre de longueur $$L$$, plongé dans un champ magnétique $$B$$, obéit à l’équation suivante :
+
+$$
+\overrightarrow{F} = I\left(\overrightarrow{L} \wedge \overrightarrow{B}\right)
+$$
+
+Cette force mécanique, appelée **force de Laplace**, est celle qui pousse sur les conducteurs du stator. Par attraction/répulsion avec les aimants, elle génère le **couple moteur**.
+
+# La loi de Faraday
+
+La loi de Faraday stipule que toute variation du flux magnétique à travers une bobine induit une tension, appelée **force électromotrice** et notée $$e$$, aux bornes de cette bobine.
+
+L’équation mathématique pour une bobine de $$N$$ spires est :
+
+$$
+e = -N \frac{d\Phi}{dt}
+$$
+
+- $$e$$ est la force électromotrice induite, exprimée en volts (V).
+- $$N$$ est le nombre de spires de la bobine.
+- $$\Phi$$ est le flux magnétique à travers une spire, exprimé en webers (Wb). Le flux représente la quantité de champ magnétique $$\overrightarrow{B}$$.
+- $$\frac{d\Phi}{dt}$$ représente la **vitesse de variation** de ce flux au cours du temps.
+
+# La force électromotrice (FEM ou Back-EMF)
+
+Dès que le rotor tourne, le moteur se transforme en générateur selon la loi de Faraday. Le passage des aimants devant les bobines du stator induit une tension appelée **force électromotrice (FEM)** ou **Back-EMF**. Selon la loi de Lenz, cette tension s’oppose à celle appliquée par l’onduleur.
+
+## Équation fondamentale
+
+L’amplitude de la FEM $$e$$ est directement proportionnelle à la vitesse de rotation du moteur $$\omega$$ :
+
+$$
+e = -K_e \cdot \omega \cdot f(\theta)
+$$
+
+- $$K_e$$ est la constante de FEM du moteur.
+- $$\omega$$ est la vitesse électrique du moteur.
+- $$f(\theta)$$ est la fonction de la position angulaire du rotor, liée à la géométrie du bobinage.
+
+## Profil de la FEM : BLDC et PMSM
+
+La forme de la fonction $$f(\theta)$$ dépend de la construction du stator et impose le choix de l’algorithme :
+
+- **FEM trapézoïdale, moteur BLDC :** générée par un bobinage concentré, elle est idéale pour le pilotage par blocs (6-Step).s
+- **FEM sinusoïdale, moteur PMSM :** générée par un bobinage distribué, elle requiert des courants sinusoïdaux (FOC).
+
+## Impacts en commande moteur
+
+Quand le moteur accélère, la FEM augmente. Lorsque $$e \approx V_{bus}$$, l’onduleur ne peut plus injecter de courant. Pour dépasser ce point, l’algorithme doit appliquer du **Flux Weakening** (défluxage).
+
+La FEM donne une indication sur la position du rotor :
+
+- En 6-Step, l’ADC du STM32 mesure le passage par zéro (**Zero-Crossing**) de la FEM sur la phase non alimentée.
+- En FOC, toutes les phases commutent. Un **observateur** d’état estime mathématiquement la FEM pour en extraire la position angulaire $$\theta$$.
