@@ -84,5 +84,19 @@
   "appearance": {
     "default": "light",
     "strict": true
+  },
+  "thumbnails": {
+    "appearance": "light"
+  },
+  "styling": {
+    "eyebrows": "section"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Lexend"
+    },
+    "body": {
+      "family": "Lexend"
+    }
   }
 }
