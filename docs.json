@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Bible",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#001E91",
+    "light": "#FAD600",
+    "dark": "#DBE2E9"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -53,20 +53,19 @@
     "options": [
       "copy",
       "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
       "mcp",
-      "cursor",
       "vscode"
     ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/lea-desse"
     }
   },
-  "description": "Evangile Seln Saint Gaël"
+  "description": "Evangile Seln Saint Gaël",
+  "background": {
+    "color": {
+      "dark": "#001E91"
+    }
+  }
 }
