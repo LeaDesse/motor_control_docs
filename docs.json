@@ -44,8 +44,9 @@
       }
     ],
     "primary": {
-      "type": "github",
-      "href": "https://www.github.com/lea-desse"
+      "type": "button",
+      "href": "https://lea-desse.mintlify.site/",
+      "label": "Home"
     }
   },
   "contextual": {
@@ -65,6 +66,15 @@
   "background": {
     "color": {
       "dark": "#000000"
+    }
+  },
+  "banner": {
+    "content": "Still under construction",
+    "dismissible": true,
+    "type": "warning",
+    "color": {
+      "light": "#D7C4B7",
+      "dark": "#D7C4B7"
     }
   }
 }
