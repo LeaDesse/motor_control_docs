@@ -12,13 +12,13 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "anchor": "MCSDK Wiki",
+          "href": "https://wiki.st.com/stm32mcu/wiki/Category:Motor_Control",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "anchor": "ST",
+          "href": "https://www.st.com/en/evaluation-tools/motor-control.html",
           "icon": "newspaper"
         }
       ]
