@@ -41,6 +41,10 @@
       {
         "label": "Support",
         "href": "mailto:lea.desse@st.com"
+      },
+      {
+        "href": "https://wiki.st.com/stm32mcu/wiki/Category:Motor_Control",
+        "label": "Wiki"
       }
     ],
     "primary": {
@@ -88,7 +92,7 @@
     "appearance": "light"
   },
   "styling": {
-    "eyebrows": "section"
+    "eyebrows": "breadcrumbs"
   },
   "fonts": {
     "heading": {
