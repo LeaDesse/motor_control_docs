@@ -5,7 +5,7 @@
   "colors": {
     "primary": "#001E91",
     "light": "#FAD600",
-    "dark": "#DBE2E9"
+    "dark": "#FAD600"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -65,7 +65,7 @@
   "description": "Evangile Seln Saint Gaël",
   "background": {
     "color": {
-      "dark": "#001E91"
+      "dark": "#000000"
     }
   }
 }
