@@ -8,9 +8,16 @@ La méthode la plus directe et robuste en boucle fermée repose sur l'utilisatio
 
 # Principe
 
-Les capteurs à effet Hall sont des capteurs magnétiques numériques placés au stator du moteur. Ils réagissent directement au champ magnétique produit par les aimants permanents du rotor.
+<Columns cols={2}>
+  <Column>
+    Les capteurs à effet Hall sont des capteurs magnétiques numériques placés au stator du moteur. Ils réagissent directement au champ magnétique produit par les aimants permanents du rotor.
 
-Un capteur délivre un niveau logique 1 (HIGH) lorsqu'un pôle Nord passe en face de lui. Il délivre un niveau logique 0 (LOW) à l'approche d'un pôle Sud.
+    Un capteur délivre un niveau logique 1 (HIGH) lorsqu'un pôle Nord passe en face de lui. Il délivre un niveau logique 0 (LOW) à l'approche d'un pôle Sud.
+  </Column>
+  <Column>
+    ![Hall Sensors In Motor](/images/hall_sensors_in_motor.png "Hall Sensors In Motor")
+  </Column>
+</Columns>
 
 Pour un moteur triphasé, on place 3 capteurs Hall (H<sub>1</sub>, H<sub>2</sub>, H<sub>3</sub> ou H<sub>A</sub>, H<sub>B</sub>, H<sub>C</sub>) déphasés de 120° électriques (ou 60° selon le modèle matériel). Le déphasage de 120° électrique s'exprime en degrés mécaniques selon le nombre de paires de pôles $$p$$ du moteur :
 
@@ -27,13 +34,13 @@ $$
     $$
     \{001_2,011_2,010_2,110_2,100_2,101_2\}
     $$
-
-    Les états $$000_2$$(0) et $$111_2$$(7) sont physiquement impossibles avec une disposition à 120°.
   </Column>
   <Column>
     ![Hall Sensors 6steps](/images/hall_sensors_6steps.png "Hall Sensors 6steps")
   </Column>
 </Columns>
+
+Les états $$000_2$$(0) et $$111_2$$(7) sont physiquement impossibles avec une disposition à 120°.
 
 <Warning>
   _L'ordre exact du binaire Hall dépend du sens de rotation du moteur et du câblage physique des capteurs par rapport aux phases A, B, C._
