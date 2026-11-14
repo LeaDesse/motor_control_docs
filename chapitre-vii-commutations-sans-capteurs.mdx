@@ -19,7 +19,7 @@ Où:
 - $$V_{N0}$$ est le potentiel du point neutre du moteur par rapport à la masse
 - $$e_{flottante0}$$ est la Force Contre-Électromotrice (**BEMF**) induite dans la bobine par le rotor en mouvement.
 
-<Accordion title="En savoir plus ?">
+<Accordion title="En savoir plus ?" className="en-savoir-plus">
   <Frame>
     ![Tension Phase](/images/tension_phase.png "Tension Phase")
   </Frame>
@@ -55,3 +55,19 @@ Au cours de l'intervalle de 60° électriques où une phase est flottante, la BE
 # Détermination du seuil
 
 Le passage par zéro (**Zero-Crossing Point**) correspond à l'instant précis où la BEMF de cette phase flottante franchit la valeur zéro **<u>par rapport au</u>**<u> **point neutre**</u> du moteur.
+
+<Tip>
+  **Rappel :** Sur la phase flottante : $$V_{0}(t) ​=V_{N0} +e(t) ​$$
+</Tip>
+
+Si $$e(t) = 0$$ alors $$V_0(t) = V_{N0}$$
+
+Rechercher le moment où la phase flottante franchit la valeur zéro, revient à chercher le moment où la tension de la phase **<u>par rapport à la masse</u>** vaut $$V_{N0}.$$
+
+Il est donc indispensable de connaître la tension du point neutre pour déterminer le passage à zéro de la BEMF.
+
+# Calcul de la tension du neutre
+
+La tension du point neutre peut être calculée à deux moments : pendant la PWM ON et pendant la PWM OFF.
+
+![6 Step Calcul Tension Neutre](/images/6-step_calcul_tension_neutre.png "6 Step Calcul Tension Neutre")

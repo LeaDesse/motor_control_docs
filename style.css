@@ -3,6 +3,10 @@
   text-align: justify;
 }
 
+.en-savoir-plus {
+  background-color: #d7c4b7;
+}
+
 .equations-column .equation-line {
   display: block;
   margin: 0.75rem 0;
