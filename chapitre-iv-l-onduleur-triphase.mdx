@@ -18,3 +18,34 @@ Ces 6 transistors sont organisés en 3 bras d'onduleur parallèles (un par phase
 
 - **Transistor Haut (High-Side / HS) :** Relié entre le bus positif Vbus et la phase du moteur.
 - **Transistor Bas (Low-Side / LS) :** Relié entre la phase du moteur et le rail de masse (0V ou GND).
+
+<Frame>
+  ![Onduleur](/images/onduleur.png "Onduleur")
+</Frame>
+
+## Shoot-through
+
+La structure impose une contrainte sécuritaire absolue au niveau matériel : les deux transistors d'un même bras (Q1 et Q2) ne doivent **JAMAIS** être fermés (ON) en même temps.
+
+Si Q1 et Q2 conduisent simultanément, même pendant quelques nanosecondes, le bus de tension $$V_{bus}$$se retrouve directement relié à la masse sans aucune résistance de charge intermédiaire. Ce phénomène, appelé **court-circuit de bras** ou **_shoot-through_**, provoque :
+
+- Un pic d'intensité destructeur à travers les deux transistors.
+- Une dissipation thermique instantanée extrême par effet Joule.
+- La destruction physique irréversible des composants de puissance et parfois du driver de grille (_gate driver_).
+
+## Dead-time
+
+En pratique, un transistor de puissance ne bascule pas d'un état ouvert à un état fermé de façon instantanée. La charge et la décharge des capacités parasites de grille introduisent un retard à la commutation.
+
+Si le microcontrôleur envoyait simultanément l'ordre de fermeture au transistor bas au moment exact où il ordonne l'ouverture au transistor haut, le transistor haut conduirait encore le temps d'évacuer ses charges alors que le transistor bas commencerait déjà à s'amorcer, entraînant un shoot-through éphémère à chaque période PWM.
+
+<Columns cols={2}>
+  <Column>
+    Pour garantir la sécurité de l'onduleur, on insère un intervalle de sécurité nommé temps mort (_Dead-Time_) à chaque transition.
+
+    Pendant le temps mort, le microcontrôleur force la grille des deux transistors du bras à l'état bloqué (OFF). La phase du moteur se retrouve temporairement dans un état à haute impédance (flottante).
+  </Column>
+  <Column>
+    ![Dead Time](/images/dead_time.png "Dead Time")
+  </Column>
+</Columns>
