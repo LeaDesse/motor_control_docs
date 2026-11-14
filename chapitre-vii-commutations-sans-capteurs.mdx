@@ -54,7 +54,7 @@ Au cours de l'intervalle de 60° électriques où une phase est flottante, la BE
 
 # Détermination du seuil
 
-Le passage par zéro (**Zero-Crossing Point**) correspond à l'instant précis où la BEMF de cette phase flottante franchit la valeur zéro **<u>par rapport au</u>**<u> **point neutre**</u> du moteur.
+Le passage par zéro (**Zero-Crossing Point**) correspond à l'instant précis où la BEMF de cette phase flottante franchit la valeur zéro **<u>par rapport au</u>**<u> point neutre</u> du moteur.
 
 <Tip>
   **Rappel :** Sur la phase flottante : $$V_{0}(t) ​=V_{N0} +e(t) ​$$
@@ -106,11 +106,11 @@ La suite du calcul de la tension du point neutre dépend de l'état de la PWM. L
 
     Dans cet exemple, la phase alimentée en PWM est $$\color{0000c8}a$$ a et la phase flottante est $$\color{00c800}c$$.
 
-    $$V_{a0} = 0$$
-
-    $$V_{b0} = 0$$               ⇒ $$V_{N0} = \frac{V_{N0}}{3}$$     ⇒ $$V_{N0} = 0$$
-
-    $$V_{c0} = V_{N0}$$
+    <div className="equations-column">
+  <div className="equation-line">$$V_{a0} = 0$$</div>
+  <div className="equation-line">$$V_{b0} = 0$$</div>
+  <div className="equation-line">$$V_{c0} = V_{N0}$$</div>
+</div>
   </Column>
   <Column>
     <Frame>
@@ -119,6 +119,35 @@ La suite du calcul de la tension du point neutre dépend de l'état de la PWM. L
   </Column>
 </Columns>
 
-<Info>
-  Dans le cas d'un calcul sur le PWM off-time, on cherche le moment où la tension phase flottante par rapport à la masse passe à 0V.
-</Info>
+$$⇒ V_{N0} = \frac{V_{N0}}{3}   ⇒ \bold{V_{N0} = 0}$$
+
+<Check>
+  **Conclusion :** Dans le cas d'un calcul sur le PWM off-time, on cherche le moment où la tension de la phase flottante par rapport à la masse passe par **0V**.
+</Check>
+
+## PWM on-time
+
+<Columns cols={2}>
+  <Column>
+    Pendant le _"PWM on-time"_, le transistor HS de la phase ON et le transistor LS de la phase OFF sont passants.
+
+    Dans cet exemple, la phase alimentée en PWM est $$\color{0000c8}a$$ a et la phase flottante est $$\color{00c800}c$$.
+
+    $$V_{a0} = V_{bus}$$
+
+    $$V_{b0} = 0$$
+
+    $$V_{c0} = V_{N0}$$
+
+    $$⇒ V_{N0} = \frac{V_{bus}+V_{N0}}{3}   ⇒ \bold{V_{N0}=\frac{V_{bus}}{2}}$$
+  </Column>
+  <Column>
+    <Frame>
+      ![6 Step Calcul Tension Neutre On Time](/images/6-step_calcul_tension_neutre-on-time.png "6 Step Calcul Tension Neutre On Time")
+    </Frame>
+  </Column>
+</Columns>
+
+<Check>
+  **Conclusion :** Dans le cas d'un calcul sur le PWM on-time, on cherche le moment où la tension de la phase flottante par rapport à la masse passe par $$\bold{\frac{V_{bus}}{2}}$$**V**.
+</Check>
