@@ -7,3 +7,23 @@
   display: block;
   margin: 0.75rem 0;
 }
+
+.text-with-image::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.text-with-image__image {
+  float: right;
+  width: 60%;
+  margin: 0 0 1rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .text-with-image__image {
+    float: none;
+    width: 100%;
+    margin: 0 0 1rem;
+  }
+}

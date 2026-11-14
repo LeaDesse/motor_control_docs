@@ -39,16 +39,18 @@ En pratique, un transistor de puissance ne bascule pas d'un état ouvert à un �
 
 Si le microcontrôleur envoyait simultanément l'ordre de fermeture au transistor bas au moment exact où il ordonne l'ouverture au transistor haut, le transistor haut conduirait encore le temps d'évacuer ses charges alors que le transistor bas commencerait déjà à s'amorcer, entraînant un shoot-through éphémère à chaque période PWM.
 
-<div className="grid grid-cols-1 gap-8 md:grid-cols-[40%_60%]">
-  <div>
-    Pour garantir la sécurité de l'onduleur, on insère un intervalle de sécurité nommé temps mort (*Dead-Time*) à chaque transition.
-
-    Pendant le temps mort, le microcontrôleur force la grille des deux transistors du bras à l'état bloqué (OFF). La phase du moteur se retrouve temporairement dans un état à haute impédance (flottante).
-  </div>
-
-  <div>
+<div className="text-with-image">
+  <div className="text-with-image__image">
     <Frame>
       ![Dead Time](/images/dead_time.png "Dead Time")
     </Frame>
   </div>
+
+  <p>
+    Pour garantir la sécurité de l'onduleur, on insère un intervalle de sécurité nommé temps mort (*Dead-Time*) à chaque transition.
+  </p>
+
+  <p>
+    Pendant le temps mort, le microcontrôleur force la grille des deux transistors du bras à l'état bloqué (OFF). La phase du moteur se retrouve temporairement dans un état à haute impédance (flottante).
+  </p>
 </div>
