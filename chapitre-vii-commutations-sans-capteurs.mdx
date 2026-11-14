@@ -74,22 +74,28 @@ La tension du point neutre peut être calculée à deux moments : pendant la PWM
 
 <Columns cols={3}>
   <Column>
-    $$\color{#0000c8}V_{a0} = V_{N0}+V_{aN}$$
+    $$V_{a0} = V_{N0}+V_{aN}$$
   </Column>
   <Column>
-    $$\color{#c80000}V_{b0} = V_{N0}+V_{bN}$$
+    $$V_{b0} = V_{N0}+V_{bN}$$
   </Column>
   <Column>
-    $$\color{#00c800}V_{c0} = V_{N0}+V_{cN}$$
+    $$V_{c0} = V_{N0}+V_{cN}$$
   </Column>
 </Columns>
 
 Donc on a :
 
 $$
-\color{#0000c8}V_{a0} \color{#000000} + \color{#c80000}V_{b0} \color{#000000}+ \color{#00c800}V_{c0} \color{#000000}= 3V_{N0} + (V_{aN} + V_{bN} + V_{cN})
+V_{a0}+V_{b0}+V_{c0}= 3V_{N0} + (V_{aN} + V_{bN} + V_{cN})
 $$
 
 <Tip>
   **Rappel :** Dans tout système triphasé en étoile à neutre isolé, on a : $$V_{aN}+V_{bN}+V_{cN}=0$$ (voir [Chapitre III – Montage en étoile](/chapitre-iii-les-systemes-triphases))
 </Tip>
+
+<Frame>
+  $$
+  \bold{V_{N0} = \frac{V_{a0}+V_{b0}+V_{c0}}{3}}
+  $$
+</Frame>
