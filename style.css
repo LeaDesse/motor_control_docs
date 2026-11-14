@@ -3,6 +3,7 @@
   text-align: justify;
 }
 
-pre {
-  background-color: transparent;
+.equations-column .equation-line {
+  display: block;
+  margin: 0.75rem 0;
 }

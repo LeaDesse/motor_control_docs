@@ -11,10 +11,10 @@ Un système triphasé équilibré est composé de trois tensions alternatives de
 Les équations des tensions simples (entre la phase et le neutre) sont les suivantes :
 
 <div className="formules-triphasées grid grid-cols-1 gap-8 md:grid-cols-[35%_65%]">
-  <div>
-    <pre>$$\color{#0000c8}{v_a (t)=V_m  cos⁡(ωt)}$$</pre>
-    <pre>$$\color{#00c800}v_b (t)=V_m  cos⁡(ωt-\frac{2\pi}{3})$$</pre>
-    <pre>$$\color{#c80000}v_b (t)=V_m  cos⁡(ωt-\frac{4\pi}{3})$$</pre>
+  <div className="equations-column">
+    <div className="equation-line">$$\color{#0000c8}{v_a(t)=V_m\cos(ωt)}$$</div>
+    <div className="equation-line">$$\color{#00c800}{v_b(t)=V_m\cos(ωt-\frac{2\pi}{3})}$$</div>
+    <div className="equation-line">$$\color{#c80000}{v_c(t)=V_m\cos(ωt-\frac{4\pi}{3})}$$</div>
   </div>
 
   <div>
@@ -92,7 +92,11 @@ Formulé par Galileo Ferraris, ce théorème mathématique est la clé de voûte
 
 <Columns cols={3}>
   <Column>
-    <pre>$$U_{max} = \sqrt{3} V_{max}$$</pre> <pre>$$U_{ab} + U_{bc} + U_{ca} = 0$$</pre> <pre>$$V_{aN} + V_{bN} + V_{cN} = 0$$</pre>
+    <div className="equations-column">
+  <div className="equation-line">$$U_{max} = \sqrt{3} V_{max}$$</div>
+  <div className="equation-line">$$U_{ab} + U_{bc} + U_{ca} = 0$$</div>
+  <div className="equation-line">$$V_{aN} + V_{bN} + V_{cN} = 0$$</div>
+</div>
   </Column>
   <Column>
     <Frame>
