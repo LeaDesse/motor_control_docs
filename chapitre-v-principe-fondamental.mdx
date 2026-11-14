@@ -3,3 +3,15 @@ title: "CHAPITRE V : Principe fondamental"
 ---
 
 La **commutation trapézoïdale** (ou algorithme **6-Step**) est la méthode historique la plus directe pour piloter un moteur brushless (particulièrement adapté aux moteurs BLDC à force contre-électromotrice trapézoïdale).
+
+## Le rôle des trois phases
+
+À chaque pas (step) de 60°, la puissance est distribuée en appliquant une règle stricte d'affectation des 3 phases du stator :
+
+- **1 Phase active raccordée au rail positif (**$$V_{bus}$$**) :** Son transistor _High-Side_ (HS) est fermé (ou modulé en PWM). Le courant entre par cette phase.
+- **1 Phase active raccordée à la masse (0V) :** Son transistor _Low-Side_ (LS) est fermé. Le courant ressort par cette phase.
+- **1 Phase flottante (Haute impédance / Non alimentée) :** Ses deux transistors (HS et LS) sont ouverts (OFF). Aucun courant provenant de l'onduleur n'y est injecté.
+
+<Tip>
+  **Avantage clé de la phase flottante :** Comme aucun courant fourni par l'onduleur n'y circule, le potentiel de cette phase est uniquement dicté par la [Force Contre-Électromotrice (**BEMF**)](/chapitre-i-l-electromagnetisme#la-force-électromotrice-fem-ou-back-emf) induite par le mouvement des aimants du rotor. Cela permet de détecter son passage par zéro (_Zero-Crossing Detection_) en mode sans capteur (_sensorless_).
+</Tip>
