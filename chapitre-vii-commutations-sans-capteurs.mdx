@@ -68,8 +68,6 @@ Il est donc indispensable de connaître la tension du point neutre pour détermi
 
 # Calcul de la tension du neutre
 
-La tension du point neutre peut être calculée à deux moments : pendant la PWM ON et pendant la PWM OFF.
-
 ![6 Step Calcul Tension Neutre](/images/algo-six-step/6-step_calcul_tension_neutre.png "6 Step Calcul Tension Neutre")
 
 <Columns cols={3}>
@@ -99,3 +97,30 @@ $$
   \bold{V_{N0} = \frac{V_{a0}+V_{b0}+V_{c0}}{3}}
   $$
 </Frame>
+
+La suite du calcul de la tension du point neutre dépend de l'état de la PWM. Le calcul peut se faire pendant la PWM ON ou pendant la PWM OFF.
+
+## PWM off-time
+
+<Columns cols={2}>
+  <Column>
+    Pendant le _"PWM off-time"_, les transistors LS des deux phases actives sont passants.
+
+    Dans cet exemple, la phase alimentée en PWM est $$\color{0000c8}a$$ a et la phase flottante est $$\color{00c800}c$$.
+  </Column>
+  <Column>
+    <Frame>
+      ![6 Step Calcul Tension Neutre Off Time](/images/6-step_calcul_tension_neutre-off-time.png "6 Step Calcul Tension Neutre Off Time")
+    </Frame>
+  </Column>
+</Columns>
+
+$$V_{a0} = 0$$
+
+$$V_{b0} = 0$$               ⇒ $$V_{N0} = \frac{V_{N0}}{3}$$     ⇒ $$V_{N0} = 0$$
+
+$$V_{c0} = V_{N0}$$
+
+<Info>
+  Dans le cas d'un calcul sur le PWM off-time, on cherche le moment où la tension phase flottante par rapport à la masse passe à 0V.
+</Info>
