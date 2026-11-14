@@ -112,6 +112,12 @@ La suite du calcul de la tension du point neutre dépend de l'état de la PWM. L
     Pendant le _"PWM off-time"_, les transistors LS des deux phases actives sont passants.
 
     Dans cet exemple, la phase alimentée en PWM est $$\color{0000c8}a$$ a et la phase flottante est $$\color{00c800}c$$.
+
+    $$V_{a0} = 0$$
+
+    $$V_{b0} = 0$$               ⇒ $$V_{N0} = \frac{V_{N0}}{3}$$     ⇒ $$V_{N0} = 0$$
+
+    $$V_{c0} = V_{N0}$$
   </Column>
   <Column>
     <Frame>
@@ -119,12 +125,6 @@ La suite du calcul de la tension du point neutre dépend de l'état de la PWM. L
     </Frame>
   </Column>
 </Columns>
-
-$$V_{a0} = 0$$
-
-$$V_{b0} = 0$$               ⇒ $$V_{N0} = \frac{V_{N0}}{3}$$     ⇒ $$V_{N0} = 0$$
-
-$$V_{c0} = V_{N0}$$
 
 <Info>
   Dans le cas d'un calcul sur le PWM off-time, on cherche le moment où la tension phase flottante par rapport à la masse passe à 0V.
