@@ -3,3 +3,18 @@ title: "CHAPITRE IV : L'onduleur triphasé"
 ---
 
 # Rôle de l'onduleur
+
+Dans la majorité des applications, l'énergie électrique disponible provient d'une source en **courant continu (DC)** notée $$V_{bus}$$, constante par rapport au potentiel de masse de référence 0V.
+
+L'**onduleur triphasé** (ou pont en H triphasé) constitue l'étage d'interface puissance indispensable. Il a pour fonction première de transformer cette énergie à tension continue fixe $$V_{bus}$$ en un système triphasé d'ondes de tension modulables en amplitude et en fréquence.
+
+# Architecture matérielle
+
+## Topologie
+
+Pour concrétiser la conversion DC/AC et alimenter le moteur triphasé à partir d'une tension continue $$V_{bus}$$, l'onduleur repose sur un assemblage de 6 interrupteurs de puissance à commande électronique (généralement des Power MOSFETs pour les faibles/moyennes tensions jusqu'à ~100V, ou des IGBTs pour les hautes tensions véhiculaires/industrielles de 400V à 800V).
+
+Ces 6 transistors sont organisés en 3 bras d'onduleur parallèles (un par phase du moteur) raccordés à $$V_{bus}$$. Chaque bras est composé de deux interrupteurs placés en série :
+
+- **Transistor Haut (High-Side / HS) :** Relié entre le bus positif Vbus et la phase du moteur.
+- **Transistor Bas (Low-Side / LS) :** Relié entre la phase du moteur et le rail de masse (0V ou GND).
