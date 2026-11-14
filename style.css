@@ -20,6 +20,10 @@
   margin: 0 0 1rem 2rem;
 }
 
+.text-with-image__image--large {
+  width: 60%;
+}
+
 @media (max-width: 768px) {
   .text-with-image__image {
     float: none;
