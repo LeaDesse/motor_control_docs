@@ -20,17 +20,23 @@ La **commutation trapézoïdale** (ou algorithme **6-Step**) est la méthode his
 
 Pour entretenir le couple électromagnétique et faire tourner le moteur, le champ statorique doit constamment conserver une avance d'angle par rapport au champ rotorique. Pour cela, l'onduleur enchaîne cycliquement 6 combinaisons de conduction :
 
-<Columns cols={2}>
-  <Column>
+<div className="grid grid-cols-1 gap-8 md:grid-cols-[65%_35%]">
+  <div>
     <table>
       <colgroup>
         <col width="74" />
+
         <col width="116" />
+
         <col width="87" />
+
         <col width="86" />
+
         <col width="90" />
+
         <col width="91" />
       </colgroup>
+
       <thead>
         <tr>
           <th>Pas <br />(step)</th>
@@ -41,6 +47,7 @@ Pour entretenir le couple électromagnétique et faire tourner le moteur, le cha
           <th>Sens du courant</th>
         </tr>
       </thead>
+
       <tbody>
         <tr>
           <td>Step 1</td>
@@ -50,6 +57,7 @@ Pour entretenir le couple électromagnétique et faire tourner le moteur, le cha
           <td>C</td>
           <td>A <Icon icon="arrow-right-long" color="#64748B" /> B</td>
         </tr>
+
         <tr>
           <td>Step 2</td>
           <td>60° - 120°</td>
@@ -58,6 +66,7 @@ Pour entretenir le couple électromagnétique et faire tourner le moteur, le cha
           <td>B</td>
           <td>A <Icon icon="arrow-right-long" color="#64748B" /> C</td>
         </tr>
+
         <tr>
           <td>Step 3</td>
           <td>120° - 180°</td>
@@ -66,6 +75,7 @@ Pour entretenir le couple électromagnétique et faire tourner le moteur, le cha
           <td>A</td>
           <td>B <Icon icon="arrow-right-long" color="#64748B" /> C</td>
         </tr>
+
         <tr>
           <td>Step 4</td>
           <td>180° - 240°</td>
@@ -74,6 +84,7 @@ Pour entretenir le couple électromagnétique et faire tourner le moteur, le cha
           <td>C</td>
           <td>B <Icon icon="arrow-right-long" color="#64748B" /> A</td>
         </tr>
+
         <tr>
           <td>Step 5</td>
           <td>240° - 300°</td>
@@ -82,6 +93,7 @@ Pour entretenir le couple électromagnétique et faire tourner le moteur, le cha
           <td>B</td>
           <td>C <Icon icon="arrow-right-long" color="#64748B" /> A</td>
         </tr>
+
         <tr>
           <td>Step 6</td>
           <td>300° - 360°</td>
@@ -92,13 +104,9 @@ Pour entretenir le couple électromagnétique et faire tourner le moteur, le cha
         </tr>
       </tbody>
     </table>
-  </Column>
-  <Column>
-    <img
-      src="/images/commutations_6step.png"
-      alt="Commutations 6step"
-      title="Commutations 6step"
-      className="ml-auto"
-    />
-  </Column>
-</Columns>
+  </div>
+
+  <div>
+    <img src="/images/commutations_6step.png" alt="Commutations 6step" title="Commutations 6step" className="ml-auto" />
+  </div>
+</div>
