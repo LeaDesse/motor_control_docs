@@ -20,13 +20,20 @@ $$
 
 # Décodage du mot binaire (hall state)
 
-À mesure que le rotor tourne, la combinaison des signaux des 3 capteurs produit un **mot binaire à 3 bits** (H<sub>1</sub>, H<sub>2</sub>, H<sub>3</sub>). Dans une configuration standard déphasée de 120°, **6 combinaisons valides sur 8** sont générées successivement au cours d'un cycle électrique complet (360°) :
+<Columns cols={2}>
+  <Column>
+    À mesure que le rotor tourne, la combinaison des signaux des 3 capteurs produit un **mot binaire à 3 bits** (H<sub>1</sub>, H<sub>2</sub>, H<sub>3</sub>). Dans une configuration standard déphasée de 120°, **6 combinaisons valides sur 8** sont générées successivement au cours d'un cycle électrique complet (360°) :
 
-$$
-\{001_2,011_2,010_2,110_2,100_2,101_2\}
-$$
+    $$
+    \{001_2,011_2,010_2,110_2,100_2,101_2\}
+    $$
 
-Les états $$000_2$$(0) et $$111_2$$(7) sont physiquement impossibles avec une disposition à 120°.
+    Les états $$000_2$$(0) et $$111_2$$(7) sont physiquement impossibles avec une disposition à 120°.
+  </Column>
+  <Column>
+    ![Hall Sensors 6steps](/images/hall_sensors_6steps.png "Hall Sensors 6steps")
+  </Column>
+</Columns>
 
 <Warning>
   _L'ordre exact du binaire Hall dépend du sens de rotation du moteur et du câblage physique des capteurs par rapport aux phases A, B, C._
