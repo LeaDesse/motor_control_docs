@@ -1,0 +1,26 @@
+---
+title: "CHAPITRE VII : Commutations sans capteurs"
+---
+
+Le pilotage en mode **sans capteur (_Sensorless_)** permet d'éliminer les capteurs physiques à effet Hall pour réduire le coût matériel, l'encombrement, la filerie et augmenter la fiabilité du système (particulièrement dans les milieux hostiles ou immergés).
+
+En commutation 6-step, la position du rotor est reconstituée en mesurant la **Force Contre-Électromotrice (BEMF)** générée par la rotation des aimants permanents au niveau de la phase non alimentée (phase flottante).
+
+# Exploitation de la phase flottante
+
+À chaque pas de 60° de la commutation 6-step, l'onduleur laisse volontairement une phase déconnectée de toute alimentation (transistors High-Side et Low-Side à l'état OFF). La tension  mesurée sur le fil de cette phase par rapport à la masse de l'onduleur (V<sub>flottante0</sub>) vaut :
+
+$$
+V_{flottante0}=V_{N0} + e_{flottante}
+$$
+
+Où:
+
+- $$V_{N0}$$ est le potentiel du point neutre du moteur par rapport à la masse
+- $$e_{flottante0}$$ est la Force Contre-Électromotrice (**BEMF**) induite dans la bobine par le rotor en mouvement.
+
+<Expandable title="En savoir plus">
+</Expandable>
+
+<Accordion title="En savoir plus" icon="interrobang">
+</Accordion>
