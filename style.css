@@ -2,3 +2,7 @@
 .mdx-content {
   text-align: justify;
 }
+
+.formules-triphasées pre {
+  background-color: transparent;
+}

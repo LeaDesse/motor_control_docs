@@ -10,13 +10,17 @@ Un système triphasé équilibré est composé de trois tensions alternatives de
 
 Les équations des tensions simples (entre la phase et le neutre) sont les suivantes :
 
-<div className="grid grid-cols-1 gap-8 md:grid-cols-[35%_65%]">
+<div className="formules-triphasées grid grid-cols-1 gap-8 md:grid-cols-[35%_65%]">
   <div>
-    $$\color{#0000c8}{v_a (t)=V_m  cos⁡(ωt)}$$ $$\color{#00c800}v_b (t)=V_m  cos⁡(ωt-\frac{2\pi}{3})$$ $$\color{#c80000}v_b (t)=V_m  cos⁡(ωt-\frac{4\pi}{3})$$
+    <pre>$$\color{#0000c8}{v_a (t)=V_m  cos⁡(ωt)}$$</pre>
+    <pre>$$\color{#00c800}v_b (t)=V_m  cos⁡(ωt-\frac{2\pi}{3})$$</pre>
+    <pre>$$\color{#c80000}v_b (t)=V_m  cos⁡(ωt-\frac{4\pi}{3})$$</pre>
   </div>
 
   <div>
-    ![III Intro Triphase 1](/images/III_intro_triphase-1.png "III Intro Triphase 1")
+    <Frame>
+      <img src="/images/III_intro_triphase-1.png" alt="Intro Triphase" title="Intro Triphase" className="mx-auto" style={{ width:"100%" }} />
+    </Frame>
   </div>
 </div>
 
@@ -59,3 +63,9 @@ Les équations des tensions simples (entre la phase et le neutre) sont les suiva
     </Frame>
   </Column>
 </Columns>
+
+# Théorème de Ferraris
+
+Formulé par Galileo Ferraris, ce théorème mathématique est la clé de voûte de la conversion électromécanique :
+
+> Trois bobines géométriquement déphasées de $$120°$$dans l'espace, alimentées par trois courants déphasés de $$120°$$dans le temps, génèrent un champ magnétique unique de norme constante qui tourne dans l'espace.
