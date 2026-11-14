@@ -35,6 +35,12 @@
           "chapitre-iii-les-systemes-triphases",
           "chapitre-iv-l-onduleur-triphase"
         ]
+      },
+      {
+        "group": "L'ALGORITHME SIX-STEP",
+        "pages": [
+          "chapitre-v-principe-fondamental"
+        ]
       }
     ]
   },

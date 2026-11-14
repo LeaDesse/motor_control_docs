@@ -54,3 +54,9 @@ Si le microcontrôleur envoyait simultanément l'ordre de fermeture au transisto
     Pendant le temps mort, le microcontrôleur force la grille des deux transistors du bras à l'état bloqué (OFF). La phase du moteur se retrouve temporairement dans un état à haute impédance (flottante).
   </p>
 </div>
+
+## Rôle des diodes de roue libre (Freewheeling diodes)
+
+L'inductance propre des bobinages du moteur interdit toute interruption instantanée du courant de phase ( $$V_{L} = L\frac{di}{dt}$$).
+
+Lorsque les deux transistors d'un bras sont ouverts pendant le t<sub>dead</sub>, le courant inductif du moteur ne s'interrompt pas : il s’échappe en passant par les **diodes de roue libre** (intégrées dans la structure intrinsèque des MOSFETs de puissance ou ajoutées en antiparallèle sur les IGBTs).
