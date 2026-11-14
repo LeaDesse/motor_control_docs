@@ -24,6 +24,10 @@
   width: 60%;
 }
 
+.text-with-image__below-image {
+  clear: both;
+}
+
 @media (max-width: 768px) {
   .text-with-image__image {
     float: none;
