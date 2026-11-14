@@ -41,7 +41,11 @@ Les équations des tensions simples (entre la phase et le neutre) sont les suiva
     </Frame>
   </Column>
   <Column>
-    Les trois extrémités des bobines sont reliées en un point commun (point neutre $$N$$). C'est le couplage standard en Motor Control car il permet de mesurer facilement les courants de ligne (qui sont alors égaux aux courants de phase) et isole le point neutre.
+    Les trois extrémités des bobines sont reliées en un point commun (point neutre $$N$$). 
+
+    <Tip>
+      C'est le couplage standard en Motor Control car il permet de mesurer facilement les courants de phase.
+    </Tip>
   </Column>
 </Columns>
 
@@ -76,10 +80,26 @@ Formulé par Galileo Ferraris, ce théorème mathématique est la clé de voûte
 
 **Tensions simples** (Notées $$V_{aN}, V_{bN}, V_{cN}$$) : Ce sont les tensions mesurées entre chaque phase et le point neutre ($$N$$) du bobinage.
 
-<Warning>
-  On parle aussi souvent des tensions simples entre chaque phase et la masse, notées $$V_{a0}, V_{b0}, V_{c0} $$
-</Warning>
+**Tensions composées** (Notées $$U_{ab}, U_{bc}, U_{ca}$$) : Ce sont les tensions mesurées directement entre deux phases conductrices. 
 
-**Tensions composées** (Notées $$U_{ab}, U_{bc}, U_{ca}$$) : Ce sont les tensions mesurées directement entre deux phases conductrices. Ce sont les tensions réelles "vues" par les enroulements si le neutre n'est pas connecté.
+**Tensions de bras d'onduleur** (Notées $$V_{a0}, V_{b0}, V_{c0} $$) :  Ce sont les tensions mesurées entre chaque phase et la masse (0V).
 
 ## Relations mathématiques
+
+![Tension Simple Composee Sinusoides 1](/images/tension_simple_composee_sinusoides-1.png "Tension Simple Composee Sinusoides 1")
+
+<Columns cols={3}>
+  <Column>
+    $$U_{max} = \sqrt{3} V_{max}$$ $$U_{ab} + U_{bc} + U_{ca} = 0$$ $$V_{aN} + V_{bN} + V_{cN} = 0$$
+  </Column>
+  <Column>
+    <Frame>
+      ![Vecteurs Montage Etoile 1](/images/vecteurs_montage_etoile_1.png "Vecteurs Montage Etoile 1")
+    </Frame>
+  </Column>
+  <Column>
+    <Frame>
+      ![Vecteurs Montage Etoile 2](/images/vecteurs_montage_etoile_2.png "Vecteurs Montage Etoile 2")
+    </Frame>
+  </Column>
+</Columns>

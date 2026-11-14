@@ -32,7 +32,8 @@
         "pages": [
           "chapitre-i-l-electromagnetisme",
           "chapitre-ii-anatomie-du-moteur-synchrone",
-          "chapitre-iii-les-systemes-triphases"
+          "chapitre-iii-les-systemes-triphases",
+          "chapitre-iv-l-onduleur-triphase"
         ]
       }
     ]
