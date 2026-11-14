@@ -47,4 +47,9 @@ Les aimants sont collés directement sur la surface extérieure du cylindre du r
 - **Comportement :** Les aimants "font face" directement au stator. L'inductance de l'axe $$d$$ (direct) est strictement égale à l'inductance de l'axe $$q$$ (quadrature) : $$L_d = L_q$$.
 - **Conséquence FOC :** Le moteur n'a pas de couple de réluctance. Pour le piloter de manière optimale sous sa vitesse nominale, on fixe simplement la consigne de courant $$I_d = 0$$.
 
-## Les aimants en surface : IPM (Interior Permanent Magnet)
+## Les aimants insérés : IPM (Interior Permanent Magnet)
+
+Les aimants sont glissés à l'intérieur même de la structure en acier du rotor, souvent disposés en forme de "V" ou de fentes rectangulaires.
+
+- **Comportement :** L'acier du rotor entoure les aimants. Comme l'acier conduit le flux magnétique bien mieux que l'aimant lui-même, la géométrie magnétique change selon l'angle. L'inductance de l'axe $$q$$ devient supérieure à celle de l'axe $$d$$ ($$L_q > L_d$$). On dit que le moteur a une saillance magnétique.
+- **Conséquence FOC :** Ce moteur génère un couple supplémentaire appelé **couple de réluctance** (l'acier du rotor cherche naturellement à s'aligner avec le champ du stator). Pour exploiter 100% de ce moteur, l'algorithme $$I_d = 0$$ ne suffit plus : il faut utiliser l'algorithme **MTPA** (Maximum Torque Per Ampere) pour injecter un $$I_d$$ négatif et gratter ce couple gratuit.
