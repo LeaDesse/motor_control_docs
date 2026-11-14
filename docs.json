@@ -8,8 +8,8 @@
     "dark": "#FAD600"
   },
   "favicon": {
-    "light": "/images/logo-noText.svg",
-    "dark": "/images/logo-noText.svg"
+    "light": "/images/evangile-logo-noText.svg",
+    "dark": "/images/evangile-logo-noText.svg"
   },
   "navigation": {
     "global": {
@@ -36,8 +36,8 @@
     ]
   },
   "logo": {
-    "light": "/images/bible-logo.svg",
-    "dark": "/images/bible-logo.svg"
+    "light": "/images/evangile-logo.svg",
+    "dark": "/images/evangile-logo.svg"
   },
   "navbar": {
     "links": [
