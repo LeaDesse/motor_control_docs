@@ -1,0 +1,4 @@
+/* Align documentation text evenly across the site. */
+.mdx-content {
+  text-align: justify;
+}
