@@ -19,8 +19,32 @@ Où:
 - $$V_{N0}$$ est le potentiel du point neutre du moteur par rapport à la masse
 - $$e_{flottante0}$$ est la Force Contre-Électromotrice (**BEMF**) induite dans la bobine par le rotor en mouvement.
 
-<Expandable title="En savoir plus">
-</Expandable>
+<Accordion title="En savoir plus ?">
+  <Frame>
+    ![Tension Phase](/images/tension_phase.png "Tension Phase")
+  </Frame>
 
-<Accordion title="En savoir plus" icon="interrobang">
+  La tension d'une phase par rapport à la masse vaut :
+
+  $$
+  V_{a0} = V_{N0} + Ri(t)+L\frac{di(t)}{dt} + e(t)
+  $$
+
+  Quand la phase est flottante; $$i(t) = 0$$. Donc la tension de la phase par rapport à la masse devient :
+
+  $$
+  V_{a0} = V_{N0}+e(t)
+  $$
 </Accordion>
+
+# Détection du passage par zéro
+
+Au cours de l'intervalle de 60° électriques où une phase est flottante, la BEMF $$e(t)$$ de cette phase passe d'une polarité à l'autre en franchissant la valeur zéro. Le moment précis où la BEMF croise la valeur **<u>du point neutre</u>** s'appelle le **passage par zéro** (_Zero-Crossing Point_).
+
+<Columns cols={2}>
+  <Column>
+    Pour maintenir un couple électromagnétique maximal (orientation optimale du champ magnétique statorique à 90° en moyenne par rapport au rotor), la commutation du pas suivant doit intervenir exactement _30°_ **électriques après** l'instant du passage par zéro (ZCD).
+  </Column>
+  <Column>
+  </Column>
+</Columns>
