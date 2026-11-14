@@ -10,15 +10,52 @@ Un système triphasé équilibré est composé de trois tensions alternatives de
 
 Les équations des tensions simples (entre la phase et le neutre) sont les suivantes :
 
-<Columns cols={2}>
-  <Column>
+<div className="grid grid-cols-1 gap-8 md:grid-cols-[35%_65%]">
+  <div>
     $$\color{#0000c8}{v_a (t)=V_m  cos⁡(ωt)}$$ $$\color{#00c800}v_b (t)=V_m  cos⁡(ωt-\frac{2\pi}{3})$$ $$\color{#c80000}v_b (t)=V_m  cos⁡(ωt-\frac{4\pi}{3})$$
-  </Column>
-  <Column>
+  </div>
+
+  <div>
     ![III Intro Triphase 1](/images/III_intro_triphase-1.png "III Intro Triphase 1")
-  </Column>
-</Columns>
+  </div>
+</div>
 
 # Types de couplage
 
 ## Montage en étoile
+
+<Columns cols={2}>
+  <Column>
+    <Frame>
+      <img
+        src="/images/montage_etoile.png"
+        alt="Montage Etoile"
+        title="Montage Etoile"
+        className="mx-auto"
+        style={{ width:"62%" }}
+      />
+    </Frame>
+  </Column>
+  <Column>
+    Les trois extrémités des bobines sont reliées en un point commun (point neutre $$N$$). C'est le couplage standard en Motor Control car il permet de mesurer facilement les courants de ligne (qui sont alors égaux aux courants de phase) et isole le point neutre.
+  </Column>
+</Columns>
+
+## Montage en triangle
+
+<Columns cols={2}>
+  <Column>
+    Les bobines sont connectées en série pour former un circuit fermé. Utilisé pour maximiser la tension aux bornes des enroulements à haute vitesse, mais rend la mesure directe des courants de phase plus complexe.
+  </Column>
+  <Column>
+    <Frame>
+      <img
+        src="/images/montage_triangle.png"
+        alt="Montage Triangle"
+        title="Montage Triangle"
+        className="mx-auto"
+        style={{ width:"69%" }}
+      />
+    </Frame>
+  </Column>
+</Columns>
