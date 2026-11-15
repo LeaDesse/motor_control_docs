@@ -6,7 +6,7 @@ title: "CHAPITRE X : Transformées de Clarke et Park"
 
 La transformée de Clarke consiste à projeter les 3 axes physiques du moteur $$a,b,c$$ (séparés de 120°) sur un repère orthogonal composé de seulement deux axes appelés $$\alpha$$ et $$\beta$$.
 
-<Accordion title="**Edith Clarke (1883 - 1959)**">
+<Accordion title="Edith Clarke (1883 - 1959)">
   <Columns cols={2}>
     <Column>
       Edith Clarke (1883–1959) était une ingénieure électricienne et mathématicienne américaine, pionnière dans le domaine du génie électrique.
@@ -26,3 +26,23 @@ La transformée de Clarke consiste à projeter les 3 axes physiques du moteur $$
 
   _Un bel héritage pour une ingénieure qui a contribué à rendre les systèmes électriques plus faciles à comprendre et à calculer !_
 </Accordion>
+
+> Comment passe-t-on d'un système à trois axes à un système à deux axes sans perte d'information ?
+
+La condition magique : un **système équilibré**. Dans un moteur triphasé dont les bobines sont connectées en étoile, le courant qui rentre par une phase doit obligatoire ressortir par les deux autres.
+
+Physiquement, la somme des trois courants est donc **toujours nulle** à chaque instant:
+
+$$
+I_a(t)+I_b(t)+I_c(t)=0
+$$
+
+> Pourquoi ça change tout ?
+
+En algèbre linéaire, si on a 3 variables ( $$I_a, I_b, I_c)$$ mais qu'une équation les lie, cela signifie que le système n'a en réalité que 2 degrés de liberté.
+
+La troisième variable est redondante, si on connait $$I_a$$et $$I_b$$ on connait automatiquement $$I_c$$.
+
+Le système en 3D est en fait coincé sur un plan en 2D qui flotte dans l'espace. La transformée de Clarke ne fait rien d'autre que poser ce plan à plat.
+
+> Comment fonctionne la projection concrètement ? 
