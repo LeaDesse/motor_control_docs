@@ -149,5 +149,59 @@ $$⇒ V_{N0} = \frac{V_{N0}}{3}   ⇒ \bold{V_{N0} = 0}$$
 $$⇒ V_{N0} = \frac{V_{bus}+V_{N0}}{3}   ⇒ \bold{V_{N0}=\frac{V_{bus}}{2}}$$
 
 <Check>
-  **Conclusion :** Dans le cas d'un calcul sur le PWM on-time, on cherche le moment où la tension de la phase flottante par rapport à la masse passe par $$\bold{\frac{V_{bus}}{2}}$$**V**.
+  **Conclusion :** Dans le cas d'un calcul sur le PWM on-time, on cherche le moment où la tension de la phase flottante par rapport à la masse passe par $$\frac{V_{bus}}{2}$$.
 </Check>
+
+## Déclenchement de l'ADC et Watchdog
+
+Pour réaliser la détection de passage par zéro (ZCD) de la BEMF sans impacter les performances du processeur, le microcontrôleur s'appuie sur un couplage matériel direct entre le **Timer PWM**, le convertisseur **ADC** et le périphérique de **Watchdog Analogique** (_Analog Watchdog_ - AWD).
+
+## Synchronisation du déclenchement
+
+Afin d'éviter de mesurer la tension pendant les transitoires de commutation des MOSFETs (source de bruit haute fréquence), l'échantillonnage de la phase flottante doit être parfaitement synchronisé avec le hachage de l'onduleur.
+
+Le timer avancé (ex: TIM1 ou TIM8) émet une impulsion d'amorce matérielle (**TRGO**) à un instant précis de sa période de comptage :
+
+- En mode **PWM OFF-time**, le déclenchement est positionné au milieu de la fenêtre d'extinction des transistors High-Side.
+- En mode **PWM ON-time**, il est calé au centre du créneau d'allumage du High-Side.
+
+![6step ADC Trigger Pwm](/images/6step-ADC-trigger-pwm.png "6step ADC Trigger Pwm")
+
+Ce signal TRGO déclenche automatiquement la conversion de la voie analogique associée à la phase flottante via un canal **ADC Injected** (ou canal Regular dédié). La numérisation s'effectue sans aucune latence ni intervention du CPU.
+
+## Surveillance par Watchdog Analogique (AWD)
+
+Plutôt que d'interrompre le processeur à chaque cycle PWM pour vérifier numériquement si la tension convertie a franchi le seuil, l'algorithme exploite le **Watchdog Analogique (AWD)** intégré à l'ADC.
+
+Le CPU programme au préalable les registres de seuil du Watchdog Analogique (ADC_HTR et ADC_LTR) avec la valeur numérique correspondant au seuil théorique calculé. À chaque conversion déclenchée par la PWM, le périphérique ADC compare automatiquement la donnée mesurée par rapport à ces bornes.
+
+Tant que la BEMF ne franchit pas la fenêtre définie, la conversion s'effectue silencieusement en matériel ; **aucune interruption n'est envoyée au CPU**, ce qui laisse le processeur 100 % disponible pour d'autres tâches.
+
+Dès que la tension de la phase flottante passe au-dessus (ou en dessous) du seuil prédéfini, l'AWD lève immédiatement un drapeau matériel et génère **une unique interruption**.
+
+Cette interruption événementielle avertit instantanément le logiciel du franchissement du passage par zéro, déclenchant alors le calcul de la vitesse et l'armement de la temporisation pour la commutation du pas suivant.
+
+```mermaid
+flowchart TD
+    subgraph HW[Hardware]
+        T[Timer PWM] -->|Trigger TRGO| A[ADC]
+        A -->|Conversion| W[AWD]
+    end
+
+    subgraph SW[Software]
+        P[Programmation du prochain step]
+    end
+
+    W -->|ZC détecté / Interruption CPU| P
+    P --> T
+    W -->|ZC non détecté| T
+
+    classDef hardware fill:#0e2a97,stroke:#52627a,color:#ffffff
+    classDef software fill:#0e2a97,stroke:#52627a,color:#ffffff
+
+    style HW fill:#c5d8e8,stroke:#38627a,color:#172b38
+    style SW fill:#c5d8e8,stroke:#38627a,color:#172b38
+
+    class T,A,W hardware
+    class P software
+```
