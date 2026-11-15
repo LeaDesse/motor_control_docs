@@ -71,7 +71,7 @@ On intercale donc un circuit intégré intermédiaire entre le microcontrôleur 
   ![Pilote Grille](/images/pilote_grille.png "Pilote Grille")
 </Frame>
 
-## Polarité des Signaux de Commande (_Active High_ vs _Active Low_)
+## Polarité des signaux de commande (_Active High_ vs _Active Low_)
 
 Selon la topologie de la carte électronique, le modèle de _Gate Driver_ utilisé (ex. STSPIN, L6230, DRV83xx) ou la présence d'optocoupleurs d'isolation, la logique d'activation des transistors High-Side (HS) et Low-Side (LS) peut être configurée selon deux polarités :
 
@@ -83,3 +83,76 @@ Selon la topologie de la carte électronique, le modèle de _Gate Driver_ utilis
   - Signal logique = `1` ($$3,3V$$) → Le transistor est **ouvert (OFF / bloqué)**.
 
 **Intérêt matériel :** Certains _Gate Drivers_ inversent naturellement la logique d'entrée sur leur voie Low-Side pour des raisons de sécurité matérielle (afin d'éviter un _shoot-through_ au démarrage ou en cas de perte de signal). Le paramétrage de la polarité directement dans les registres des timers du microcontrôleur (ex. _STM32CubeMX_ / _Motor Control Workbench_) permet d'adapter les sorties PWM à n'importe quel driver sans ajouter d'inverseurs logiques externes.
+
+## Architectures de commande : 6-PWM vs 3-PWM + Enables
+
+Selon le niveau d'intégration du _Gate Driver_, le microcontrôleur pilote l'onduleur selon deux architectures principales :
+
+### A. Architecture 6-PWM (3 High-Side + 3 Low-Side)
+
+Le microcontrôleur génère **6 signaux PWM indépendants** (3 paires complémentaires) et pilote individuellement chaque transistor de l'onduleur.
+
+- **Gestion du Dead-Time :** Assurée directement par le timer avancé du microcontrôleur (ex. registre `BDTR` sur STM32).
+- **Polyvalence :** Permet de contrôler chaque interrupteur indépendamment (indispensable pour la modulation vectorielle **FOC** comme pour la mise en haute impédance d'une phase en **6-Step**).
+
+### B. Architecture 3-PWM + 3 Enables (Low-Side utilisés comme _Enable_)
+
+Certains _Gate Drivers_ intègrent leur propre logique de complémentarité et de génération de temps mort (_Dead-Time_).
+
+1. **3 entrées PWM (**`PWM_A`**,** `PWM_B`**,** `PWM_C`**) :** Le microcontrôleur n'envoie qu'un seul signal PWM par bras. Lorsqu'il est à `1`, le driver ferme le High-Side ; lorsqu'il est à `0`, le driver ouvre le High-Side et ferme automatiquement le Low-Side après insertion du _Dead-Time_.
+2. **3 entrées Enable (**`EN_A`**,** `EN_B`**,** `EN_C`**) :** Les 3 broches habituellement réservées aux signaux Low-Side sont reconfigurées en simples sorties numériques (GPIO) d'activation de bras :
+   - `EN_x = 1` : Le bras $$x$$ est actif et suit la commande `PWM_x`.
+   - `EN_x = 0` : Les deux transistors (HS et LS) du bras \$x\$ sont forcés à l'arrêt (**OFF**). La phase est alors placée en **haute impédance (flottante)**.
+
+> **Application directe au 6-Step :** Cette architecture est particulièrement adaptée au pilotage **6-Step**, qui nécessite à chaque instant deux phases actives et une phase flottante pour mesurer la BEMF. Il suffit de passer la broche `Enable` de la phase concernée à `0` pour l'isoler électriquement.
+
+## Le Signal _Master Enable_ (Activation Globale)
+
+Sur les modules de puissance intégrés (IPM) ou certains _Gate Drivers_ conçus spécifiquement pour la commande sinusoïdale, les 3 broches `Enable` individuelles sont remplacées par **une seule broche de commande globale** appelée **Master Enable** (souvent notée `EN`, `ENABLE` ou `nSLEEP`).
+
+- `Master Enable = 1 `**:** L'ensemble de l'étage de puissance est autorisé à fonctionner ; les 3 bras commutent selon leurs signaux PWM respectifs.
+- `Master Enable = 0 `**:** Les **6 transistors** de l'onduleur sont bloqués simultanément (mise en roue libre / haute impédance totale du moteur).
+
+**Rôles et limites :**
+
+- **Sécurité et économie d'énergie :** Permet de couper instantanément toute puissance vers le moteur en cas de défaut matériel ou de placer le _Gate Driver_ en mode veille (_Sleep Mode_) à l'arrêt.
+- **Limitation algorithmique :** Puisqu'il est impossible de désactiver un seul bras indépendamment des deux autres, une architecture **3-PWM + Master Enable** est réservée aux commandes où les trois bras commutent en permanence (**FOC** / SPWM) et ne permet pas de réaliser un pilotage **6-Step** standard.
+
+## Tableau récapitulatif des interfaces de commande
+
+<table>
+  <colgroup>
+    <col width="278" />
+    <col width="210" />
+    <col width="253" />
+    <col width="215" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>**Architecture**</th>
+      <th>**Signaux Microcontrôleur**</th>
+      <th>**Rôle du Gate Driver**</th>
+      <th>**Algorithmes Compatibles**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>**6-PWM** _(3 HS + 3 LS)_</td>
+      <td>6 sorties PWM complémentaires</td>
+      <td>Amplification et isolation uniquement (le MCU gère le _Dead-Time_).</td>
+      <td>**Universel** (FOC et 6-Step)</td>
+    </tr>
+    <tr>
+      <td>**3-PWM + 3 Enables** _(LS = Enable)_</td>
+      <td>3 sorties PWM + 3 GPIO (`EN_A/B/C`)</td>
+      <td>Génération des signaux complémentaires, du _Dead-Time_ et mise en haute impédance par bras.</td>
+      <td>**6-Step** (idéal) et FOC</td>
+    </tr>
+    <tr>
+      <td>**3-PWM + Master Enable**</td>
+      <td>3 sorties PWM + 1 GPIO (`EN_GLOBAL`)</td>
+      <td>Génération des signaux complémentaires, du _Dead-Time_ et coupure globale.</td>
+      <td>**FOC** / Sinusoïdal uniquement</td>
+    </tr>
+  </tbody>
+</table>

@@ -40,3 +40,31 @@ L'approche six-step reste très répandue dans les applications industrielles et
 </table>
 
 # Limitations majeures du six-step
+
+## L'ondulation de couple (Torque Ripple)
+
+Le défaut principal du contrôle Six-Step réside dans la production d'une **ondulation de couple périodique**, qui se manifeste par des pulsations mécaniques à chaque transition de pas (tous les $$60°$$ électriques, soit à une fréquence égale à $$6\times f_{électrique}$$).
+
+Cette irrégularité du couple a deux origines physiques :
+
+- **La discontinuité angulaire du champ statorique :** Contrairement au FOC où le vecteur champ magnétique statorique tourne de manière fluide et continue, le Six-Step impose des « sauts » brusques de 60°. Par conséquent, l'angle entre le flux du rotor et celui du stator n'est jamais maintenu strictement à 90° (angle de couple optimal) : il oscille en permanence entre 60° et 120°.
+- **Le phénomène de commutation de phase :** Lors du passage d'un pas au suivant, le courant dans la phase qui devient flottante ne peut pas s'annuler instantanément à cause de l'inductance du bobinage ( $$V_L = L\frac{di(t)}{dt}$$). Il continue de décroître via les diodes de roue libre pendant que le courant s'établit progressivement dans la nouvelle phase activée. Ce déséquilibre transitoire crée une chute ou un pic de couple à chaque commutation.
+
+## Bruit acoustique et vibrations mécaniques
+
+L'alimentation des enroulements par des créneaux de courant rectangulaires ou trapézoïdaux génère un spectre riche en **harmoniques de courant** (notamment de rangs 5, 7, 11, 13...).
+
+- Ces harmoniques induisent des forces magnétiques radiales pulsantes entre le stator et le rotor.
+- Elles provoquent un **bruit acoustique caractéristique** particulièrement audible à basse et moyenne vitesse, ainsi que des vibrations mécaniques pouvant accélérer l'usure des roulements et de la structure mécanique.
+
+## Difficultés à basse vitesse et décrochage en régime transitoire
+
+Dans sa version la plus répandue **sans capteur (_sensorless_)**, l'algorithme s'appuie sur la mesure de la Force Contre-Électromotrice (BEMF) sur la phase flottante pour détecter le passage par zéro (_Zero-Crossing Detection_ - ZCD) :
+
+- **Impossibilité de démarrage direct en boucle fermée :** L'amplitude de la BEMF étant proportionnelle à la vitesse de rotation, elle est nulle à l'arrêt et trop faible à très basse vitesse pour être distinguée du bruit de découpage. Le moteur nécessite obligatoirement une séquence de démarrage en boucle ouverte (alignement du rotor puis rampe d'accélération aveugle) avant de basculer sur l'observation de la BEMF.
+- **Sensibilité aux variations brusques de charge :** L'instant de commutation est prédit à partir de la durée des pas précédents (temporisation de 30° après le ZCD). Lors d'un fort appel de couple soudain ou d'une accélération brutale, le rotor ralentit brusquement et prend du retard sur la séquence de commutation. La BEMF se déforme alors, entraînant une erreur de détection du ZCD, un **décrochage (_loss of synchronization_)** et l'arrêt du moteur.
+
+## Perte de rendement et contraintes de régulation
+
+- **Rendement énergétique dégradé à basse vitesse :** La circulation d'harmoniques de courant qui ne participent pas au couple utile génère des pertes supplémentaires par effet Joule ($$RI^2$$) et des pertes fer dans le stator, réduisant l'efficacité globale par rapport à une alimentation sinusoïdale.
+- **Absence de contrôle indépendant du flux (Défluxage) :** Le Six-Step ne permet pas de dissocier le courant magnétisant (axe $$d$$) du courant générateur de couple (axe $$q$$). Il est donc impossible d'appliquer des stratégies avancées d'optimisation du couple comme le **MTPA** (_Maximum Torque Per Ampere_) ou d'étendre la plage de vitesse maximale par **défluxage** (_Field Weakening_).
