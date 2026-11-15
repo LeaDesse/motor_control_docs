@@ -4,22 +4,12 @@
 }
 
 .mdx-content h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.2;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
   color: #000000;
 }
 
 #page-title {
-  font-size: 2.4rem;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: 0.02em;
-  padding-bottom: 0.75rem;
-  border-bottom: 4px solid #0e2a97;
   color: #000000;
 }
 
