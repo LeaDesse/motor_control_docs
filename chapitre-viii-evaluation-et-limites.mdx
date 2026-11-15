@@ -1,0 +1,42 @@
+---
+title: "CHAPITRE VIII : Evaluation et limites"
+---
+
+Bien que la commande 6-step (trapézoïdale) se distingue par sa simplicité algorithmique et son faible coût en ressources de calcul embarquées, elle présente des limitations physiques et dynamiques intrinsèques dues à sa nature discrète par blocs de 60°.
+
+# Synthèse des avantages du six-step
+
+L'approche six-step reste très répandue dans les applications industrielles et grand public à bas coût ou à très haute vitesse de rotation.
+
+<table>
+  <colgroup>
+    <col width="274" />
+    <col width="403" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Avantage</th>
+      <th>Explication technique</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>_Faible charge processeur_</td>
+      <td>Les commutations ont lieu uniquement tous les 60° électriques. L'algorithme ne requiert pas de transformations mathématiques complexes (Clarke/Park).</td>
+    </tr>
+    <tr>
+      <td>_Simplicité de l'étage de puissance_</td>
+      <td>_Une seule mesure de courant (sur le bus continu Vbus via un mono-shunt) suffit pour réguler le couple ou protéger l'onduleur._</td>
+    </tr>
+    <tr>
+      <td>_Pertes par commutation réduites_</td>
+      <td>_À chaque pas de 60°, une seule phase est hachée en PWM, une phase est reliée à la masse (ou au rail haut) et la troisième est flottante. Deux MOSFETs seulement commutent activement à la fois._</td>
+    </tr>
+    <tr>
+      <td>_Plage de vitesse élevée_</td>
+      <td>_La simplicité des calculs permet d'atteindre des vitesses électriques extrêmement élevées (plusieurs centaines de milliers de tr/min) sans être limité par la fréquence de la boucle de contrôle._</td>
+    </tr>
+  </tbody>
+</table>
+
+# Limitations majeures du six-step

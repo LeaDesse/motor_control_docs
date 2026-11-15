@@ -60,3 +60,26 @@ Si le microcontrôleur envoyait simultanément l'ordre de fermeture au transisto
 L'inductance propre des bobinages du moteur interdit toute interruption instantanée du courant de phase ( $$V_{L} = L\frac{di}{dt}$$).
 
 Lorsque les deux transistors d'un bras sont ouverts pendant le t<sub>dead</sub>, le courant inductif du moteur ne s'interrompt pas : il s’échappe en passant par les **diodes de roue libre** (intégrées dans la structure intrinsèque des MOSFETs de puissance ou ajoutées en antiparallèle sur les IGBTs).
+
+# Pilotes de grilles (Gate drivers) et interfaces de commandes
+
+Les sorties numériques d'un microcontrôleur (typiquement $$0\text{V}$$/ $$3.3V$$avec un courant de quelques milliampères) sont incapables de piloter directement les grilles des transistors de puissance (MOSFETs ou IGBTs), qui exigent des tensions de grille plus élevées (souvent $$10V$$à $$15V$$) ainsi que des pics de courant importants pour charger et décharger rapidement leurs capacités parasites ($$C_{iss}$$).
+
+On intercale donc un circuit intégré intermédiaire entre le microcontrôleur et l'étage de puissance : le **Gate Driver** (pilote de grille).
+
+<Frame>
+  ![Pilote Grille](/images/pilote_grille.png "Pilote Grille")
+</Frame>
+
+## Polarité des Signaux de Commande (_Active High_ vs _Active Low_)
+
+Selon la topologie de la carte électronique, le modèle de _Gate Driver_ utilisé (ex. STSPIN, L6230, DRV83xx) ou la présence d'optocoupleurs d'isolation, la logique d'activation des transistors High-Side (HS) et Low-Side (LS) peut être configurée selon deux polarités :
+
+- **Polarité Active High (Active à l'état haut) :**
+  - Signal logique = `1` ($$3,3V$$) → Le transistor est **fermé (ON / passant)**.
+  - Signal logique = `0` ($$0V$$) → Le transistor est **ouvert (OFF / bloqué)**.
+- **Polarité Active Low (Active à l'état bas) :**
+  - Signal logique = `0` ($$0V$$) → Le transistor est **fermé (ON / passant)**.
+  - Signal logique = `1` ($$3,3V$$) → Le transistor est **ouvert (OFF / bloqué)**.
+
+**Intérêt matériel :** Certains _Gate Drivers_ inversent naturellement la logique d'entrée sur leur voie Low-Side pour des raisons de sécurité matérielle (afin d'éviter un _shoot-through_ au démarrage ou en cas de perte de signal). Le paramétrage de la polarité directement dans les registres des timers du microcontrôleur (ex. _STM32CubeMX_ / _Motor Control Workbench_) permet d'adapter les sorties PWM à n'importe quel driver sans ajouter d'inverseurs logiques externes.
