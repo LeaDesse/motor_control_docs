@@ -32,3 +32,23 @@ Ce vecteur possède deux caractéristiques essentielles :
 C'est précisément cette orientation qui est fondamentale pour le contrôle du moteur. En effet, selon la position du vecteur courant par rapport au champ magnétique du rotor, le courant contribue différemment à la production du flux magnétique et du couple électromagnétique.
 
 Le principe du FOC consiste donc à maîtriser non seulement l'amplitude du courant, mais également son orientation.
+
+# Changement de repère
+
+Dans le repère naturel du stator (repère triphasé), les courants sont sinusoïdaux et varient en permanence au cours de la rotation du moteur.
+
+Leur représentation et leur régulation sont donc relativement complexes : les grandeurs que l'on souhaite contrôler varient continuellement, même lorsque le moteur fonctionne à vitesse et charge constantes.
+
+L'idée fondamentale du FOC est de changer de référentiel pour se placer dans un repère tournant à la même vitesse électrique que le rotor.
+
+L'intérêt de ce changement de repère est majeur : les composantes du courant, qui évoluent continuellement dans le référentiel du stator, deviennent idéalement constantes en régime permanent dans le référentiel tournant.
+
+On transforme ainsi un problème de régulation de grandeurs sinusoïdales en un problème de régulation de grandeurs continues, beaucoup plus simple à traiter avec des régulateurs classiques de type PI.
+
+<Info>
+  Le FOC repose sur une idée fondamentale : **contrôler le vecteur courant statorique dans un référentiel aligné avec le flux magnétique du rotor**.
+</Info>
+
+Pour réaliser cette transformation, deux opérations mathématiques sont nécessaires : **la transformation de Clarke**, qui permet de passer du repère triphasé abc au repère orthogonal αβ, puis **la transformation de Park**, qui permet de passer du repère αβ au repère tournant d-q.
+
+Ces deux transformations constituent les fondements mathématiques du FOC et seront détaillées dans le chapitre suivant.
