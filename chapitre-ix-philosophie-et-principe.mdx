@@ -1,3 +1,34 @@
 ---
 title: "CHAPITRE IX : Philosophie et principe"
 ---
+
+Après avoir étudié le fonctionnement de la commande Six-Step et identifié ses principales limitations, il est intéressant de se tourner vers une stratégie de commande plus avancée : le **Field Oriented Control (FOC)**. Cette approche repose sur un contrôle vectoriel du courant moteur, permettant de maîtriser indépendamment les composantes de flux et de couple. Elle offre ainsi un contrôle plus précis et plus souple du moteur, notamment à basse vitesse, tout en améliorant les performances dynamiques et le rendement énergétique.
+
+# Du contrôle en tension au contrôle en courant
+
+Dans une commande Six-Step classique, les phases du moteur sont alimentées selon une séquence de commutation prédéfinie. Le contrôleur impose principalement une tension aux bornes des enroulements, et le courant résultant dépend alors de la tension appliquée, de la vitesse de rotation et des caractéristiques électriques du moteur.
+
+Le FOC adopte une approche différente : plutôt que de piloter directement les tensions de phase, il cherche à contrôler précisément les courants circulant dans les enroulements.
+
+Ce choix est particulièrement intéressant car le couple électromagnétique d'un moteur synchrone est directement lié aux courants statoriques et à leur orientation par rapport au champ magnétique du rotor.
+
+En contrôlant les courants, il devient donc possible d'agir directement sur la production du couple, avec une meilleure maîtrise de la dynamique du moteur.
+
+# Le courant comme vecteur
+
+Dans un moteur triphasé, les courants circulant dans les trois enroulements ne sont pas indépendants. Ils sont décalés dans le temps et dans l'espace de 120° électriques.
+
+On peut représenter ces trois courants par un unique vecteur résultant appelé **vecteur courant statorique**.
+
+<Frame>
+  ![Vecteur Courant Resultant](/images/vecteur_courant_resultant.gif "Vecteur Courant Resultant")
+</Frame>
+
+Ce vecteur possède deux caractéristiques essentielles :
+
+- **Son amplitude**, qui représente l'intensité du courant statorique.
+- **Son orientation**, qui définit sa position angulaire par rapport au rotor.
+
+C'est précisément cette orientation qui est fondamentale pour le contrôle du moteur. En effet, selon la position du vecteur courant par rapport au champ magnétique du rotor, le courant contribue différemment à la production du flux magnétique et du couple électromagnétique.
+
+Le principe du FOC consiste donc à maîtriser non seulement l'amplitude du courant, mais également son orientation.
