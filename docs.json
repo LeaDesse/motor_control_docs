@@ -44,6 +44,12 @@
           "chapitre-vii-commutations-sans-capteurs",
           "chapitre-viii-evaluation-et-limites"
         ]
+      },
+      {
+        "group": "L'ALGORITHME FOC",
+        "pages": [
+          "chapitre-ix-philosophie-et-principe"
+        ]
       }
     ]
   },
