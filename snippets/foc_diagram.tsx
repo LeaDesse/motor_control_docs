@@ -11,6 +11,17 @@ export const FocDiagram = () => {
       .catch(() => setSvg(""));
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
+
   return (
     <>
       <div style={{ width: "100%", maxWidth: "620px", margin: "0 auto" }}>
@@ -27,7 +38,7 @@ export const FocDiagram = () => {
           />
         </button>
         <p style={{ textAlign: "center", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-          Cliquez sur le schéma pour l'agrandir.
+          Cliquez sur le schéma pour l'agrandir. Appuyez sur Échap pour fermer.
         </p>
       </div>
 
@@ -37,20 +48,12 @@ export const FocDiagram = () => {
           aria-modal="true"
           aria-label="Schéma FOC agrandi"
           onClick={() => setIsOpen(false)}
-          style={{ position: "fixed", inset: 0, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", background: "rgba(0, 0, 0, 0.75)" }}
+          style={{ position: "fixed", inset: 0, zIndex: 2147483647, isolation: "isolate", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", background: "rgba(0, 0, 0, 0.82)" }}
         >
           <div
             onClick={(event) => event.stopPropagation()}
-            style={{ position: "relative", width: "min(96vw, 1400px)", maxHeight: "92vh", overflow: "auto", padding: "1rem", background: "white", borderRadius: "0.75rem" }}
+            style={{ position: "relative", width: "min(96vw, 1400px)", height: "92vh", overflow: "auto", padding: "1rem", background: "white", borderRadius: "0.75rem" }}
           >
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              aria-label="Fermer le schéma"
-              style={{ position: "sticky", top: 0, float: "right", zIndex: 1, width: "2rem", height: "2rem", border: 0, borderRadius: "999px", background: "#0e2a97", color: "white", fontSize: "1.25rem", cursor: "pointer" }}
-            >
-              ×
-            </button>
             {svg ? (
               <div dangerouslySetInnerHTML={{ __html: svg }} />
             ) : (
