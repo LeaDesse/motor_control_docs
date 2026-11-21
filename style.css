@@ -41,6 +41,29 @@
 .torque-details li {
   color: inherit;
   font-size: inherit;
+}.torque-details ul,
+.torque-details li,
+.torque-details li::marker {
+  color: inherit;
+  font-size: inherit;
+}.torque-details,
+.torque-details * ,
+.torque-details *::before,
+.torque-details *::after {
+  color: inherit !important;
+  font-size: inherit;
+}
+
+.torque-details li::marker {
+  color: inherit !important;
+}.torque-point,
+.torque-bullet {
+  color: inherit !important;
+  font-size: inherit;
+}
+
+.torque-point {
+  margin: 0.35rem 0;
 }
 
 .equations-column .equation-line {
