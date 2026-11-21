@@ -37,6 +37,12 @@
   background-color: #d7c4b7;
 }
 
+.torque-details ul,
+.torque-details li {
+  color: inherit;
+  font-size: inherit;
+}
+
 .equations-column .equation-line {
   display: block;
   margin: 0.75rem 0;

@@ -86,3 +86,37 @@ C'est tout le génie de l'algorithme FOC; au lieu de regarder le moteur depuis l
 
   La transformation de Park constitue aujourd'hui l'un des fondements du _Field Oriented Control_ (FOC).
 </Accordion>
+
+<Columns cols={2}>
+  <Column>
+    ![Park Projection](/images/park_projection.png "Park Projection")
+  </Column>
+  <Column>
+    La transformée de Park prend les axes fixes ($$\alpha, \beta$$) et leur applique une rotation d'un angle $$\theta$$ qui est la position angulaire du rotor. On obtient un nouveau repère orthogonal appelé $$d, q$$.
+
+    - l'axe $$d$$ (direct) : il est aligné avec le flux magnétique du rotor (l'aimant)
+    - l'axe $$q$$ (quadrature) : il est situé à 90° en avance par rapport à l'axe $$d$$. C'est l'axe du couple électrique.
+  </Column>
+</Columns>
+
+<Tip>
+  **Pourquoi l'axe du couple électrique est-il à 90° ?**
+
+  Le couple se calcule avec la formule : $$\tau = r \cdot F \cdot sin(\theta)$$.
+
+  <Columns cols={2}>
+    <Column>
+      - $$\tau$$ : couple / torque
+      - $$r$$ : distance entre l'axe et le point d'application de la force
+      - $$F$$: force appliquée
+      - $$\theta$$: angle entre la force et le bras de levier
+    </Column>
+    <Column>
+      <img
+        src="/images/torque.png"
+        alt="Torque"
+        title="Torque"
+      />
+    </Column>
+  </Columns>
+</Tip>
