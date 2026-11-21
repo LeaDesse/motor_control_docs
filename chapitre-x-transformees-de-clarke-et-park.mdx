@@ -52,24 +52,14 @@ Le système en 3D est en fait coincé sur un plan en 2D qui flotte dans l'espace
     ![Clarke Projection](/images/clarke_projection.png "Clarke Projection")
   </Column>
   <Column>
-    $$
-    \left\{
-\begin{aligned}
-I_a &= I_\alpha \\
-I_b &= \cos\left(\frac{2\pi}{3}\right)I_\alpha + \sin\left(\frac{2\pi}{3}\right)I_\beta \\
-I_c &= \cos\left(-\frac{2\pi}{3}\right)I_\alpha + \sin\left(-\frac{2\pi}{3}\right)I_\beta
-\end{aligned}
-\right.
-    $$
+    $$\left\{\begin{aligned}I_a &= I_\alpha \\I_b &= \cos\left(\frac{2\pi}{3}\right)I_\alpha + \sin\left(\frac{2\pi}{3}\right)I_\beta \\I_c &= \cos\left(-\frac{2\pi}{3}\right)I_\alpha + \sin\left(-\frac{2\pi}{3}\right)I_\beta\end{aligned}\right.$$
 
     $$<=>\left\{\begin{aligned}I_a &= I_\alpha \\I_b &= -\frac{1}{2}I_\alpha + \frac{\sqrt{3}}{2}I_\beta \\I_c &= -\frac{1}{2}I_\alpha - \frac{\sqrt{3}}{2}I_\beta\end{aligned}\right.$$
   </Column>
 </Columns>
 
 <Frame>
-  $$
-  \begin{aligned}I_\alpha &= I_a  \\I_\beta &= \frac{1}{\sqrt{3}}(I_b-I_c)\end{aligned}
-  $$
+  $$\begin{aligned}I_\alpha &= I_a  \\I_\beta &= \frac{1}{\sqrt{3}}(I_b-I_c)\end{aligned}$$
 </Frame>
 
 A ce stade, les courants $$I_\alpha$$et $$I_\beta$$ sont toujours des sinusoïdes qui oscillent. Le problème du PI n'est donc pas encore résolu.
