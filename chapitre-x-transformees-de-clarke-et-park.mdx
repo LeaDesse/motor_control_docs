@@ -49,13 +49,15 @@ Le système en 3D est en fait coincé sur un plan en 2D qui flotte dans l'espace
 
 <Columns cols={2}>
   <Column>
-    ![Clarke Projection 2](/images/clarke_projection-2.png "Clarke Projection 2")
+    <Frame>
+      ![Clarke Projection](/images/clarke_projection.png "Clarke Projection")
+    </Frame>
   </Column>
   <Column>
-    $$I_a = I_\alpha$$
-
-    $$I_b = cos(\frac{2\pi}{3})I_\alpha + sin(\frac{2\pi}{3})I_\beta$$
-
-    $$I_c = cos(-\frac{2\pi}{3})I_\alpha + sin(-\frac{2\pi}{3})I_\beta$$ 
+    <div className="equations-column">
+  <div className="equation-line">$$I_a = I_\alpha$$</div>
+  <div className="equation-line">$$I_b = \cos\left(\frac{2\pi}{3}\right)I_\alpha + \sin\left(\frac{2\pi}{3}\right)I_\beta$$</div>
+  <div className="equation-line">$$I_c = \cos\left(-\frac{2\pi}{3}\right)I_\alpha + \sin\left(-\frac{2\pi}{3}\right)I_\beta$$</div>
+</div>
   </Column>
 </Columns>
