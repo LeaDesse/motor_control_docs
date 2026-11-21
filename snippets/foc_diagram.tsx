@@ -27,13 +27,15 @@ export const FocDiagram = () => {
     <>
       <style>{`
         .foc-dialog {
-          width: 96vw;
+          box-sizing: border-box;
+          width: min(96vw, 1400px);
           height: 92vh;
-          max-width: 1400px;
+          margin: auto;
           padding: 1rem;
           border: 0;
           border-radius: 0.75rem;
-          overflow: auto;
+          overflow-x: hidden;
+          overflow-y: auto;
         }
         .foc-dialog::backdrop {
           background: rgba(0, 0, 0, 0.82);
@@ -41,6 +43,13 @@ export const FocDiagram = () => {
         .foc-dialog__content {
           width: 100%;
           min-height: 100%;
+          overflow-x: hidden;
+        }
+        .foc-dialog__content svg {
+          display: block;
+          width: 100% !important;
+          max-width: 100%;
+          height: auto !important;
         }
       `}</style>
 
