@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const FocDiagram = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [svg, setSvg] = useState("");
+  const dialogRef = useRef(null);
 
   useEffect(() => {
     fetch("/images/foc-overview.svg")
@@ -11,25 +11,45 @@ export const FocDiagram = () => {
       .catch(() => setSvg(""));
   }, []);
 
-  useEffect(() => {
-    if (!isOpen) return;
+  const openDialog = () => {
+    if (dialogRef.current && !dialogRef.current.open) {
+      dialogRef.current.showModal();
+    }
+  };
 
-    const closeOnEscape = (event) => {
-      if (event.key === "Escape") setIsOpen(false);
-    };
-
-    document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
-  }, [isOpen]);
+  const closeDialog = () => {
+    if (dialogRef.current?.open) {
+      dialogRef.current.close();
+    }
+  };
 
   return (
     <>
+      <style>{`
+        .foc-dialog {
+          width: 96vw;
+          height: 92vh;
+          max-width: 1400px;
+          padding: 1rem;
+          border: 0;
+          border-radius: 0.75rem;
+          overflow: auto;
+        }
+        .foc-dialog::backdrop {
+          background: rgba(0, 0, 0, 0.82);
+        }
+        .foc-dialog__content {
+          width: 100%;
+          min-height: 100%;
+        }
+      `}</style>
+
       <div style={{ width: "100%", maxWidth: "620px", margin: "0 auto" }}>
         <button
           type="button"
-          onClick={() => setIsOpen(true)}
-          style={{ display: "block", width: "100%", padding: 0, border: 0, background: "transparent", cursor: "zoom-in" }}
+          onClick={openDialog}
           aria-label="Agrandir le schéma FOC"
+          style={{ display: "block", width: "100%", padding: 0, border: 0, background: "transparent", cursor: "zoom-in" }}
         >
           <img
             src="/images/foc-overview.svg"
@@ -38,30 +58,23 @@ export const FocDiagram = () => {
           />
         </button>
         <p style={{ textAlign: "center", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-          Cliquez sur le schéma pour l'agrandir. Appuyez sur Échap pour fermer.
+          Cliquez sur le schéma pour l'agrandir. Cliquez en dehors pour fermer.
         </p>
       </div>
 
-      {isOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Schéma FOC agrandi"
-          onClick={() => setIsOpen(false)}
-          style={{ position: "fixed", inset: 0, zIndex: 2147483647, isolation: "isolate", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", background: "rgba(0, 0, 0, 0.82)" }}
-        >
-          <div
-            onClick={(event) => event.stopPropagation()}
-            style={{ position: "relative", width: "min(96vw, 1400px)", height: "92vh", overflow: "auto", padding: "1rem", background: "white", borderRadius: "0.75rem" }}
-          >
-            {svg ? (
-              <div dangerouslySetInnerHTML={{ __html: svg }} />
-            ) : (
-              <p>Chargement du schéma...</p>
-            )}
-          </div>
+      <dialog
+        ref={dialogRef}
+        className="foc-dialog"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) closeDialog();
+        }}
+        onCancel={closeDialog}
+        aria-label="Schéma FOC agrandi"
+      >
+        <div className="foc-dialog__content">
+          {svg ? <div dangerouslySetInnerHTML={{ __html: svg }} /> : <p>Chargement du schéma...</p>}
         </div>
-      )}
+      </dialog>
     </>
   );
 };
