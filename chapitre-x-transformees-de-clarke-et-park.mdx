@@ -45,7 +45,7 @@ La troisième variable est redondante, si on connait $$I_a$$et $$I_b$$ on connai
 
 Le système en 3D est en fait coincé sur un plan en 2D qui flotte dans l'espace. La transformée de Clarke ne fait rien d'autre que poser ce plan à plat.
 
-> Comment fonctionne la projection concrètement ? 
+> Comment fonctionne la projection concrètement ?
 
 <Columns cols={2}>
   <Column>
@@ -99,7 +99,7 @@ C'est tout le génie de l'algorithme FOC; au lieu de regarder le moteur depuis l
   </Column>
 </Columns>
 
-<Tip>
+<Info>
   **Pourquoi l'axe du couple électrique est-il à 90° ?**
 
   <Columns cols={2}>
@@ -125,6 +125,16 @@ C'est tout le génie de l'algorithme FOC; au lieu de regarder le moteur depuis l
   <Check>
     Le couple optimal est obtenu en appliquant une force perpendiculaire au bras de levier ( $$\theta = 90°$$) 
   </Check>
-</Tip>
+</Info>
 
 > Comment passe t-on d'un système à deux axes fixes à un système à deux axes tournants ?
+
+$$\left\{\begin{aligned}I_d &= I_\alpha \cos(\theta)+I_\beta \sin(\theta)  \\I_q &= I_\alpha \cos\left(\theta+\frac{\pi}{2}\right) + I_\beta\sin\left(\theta+\frac{\pi}{2}\right)\end{aligned}\right.$$
+
+<Frame>
+  $$\begin{aligned}I_d &= I_\alpha \cos(\theta)+I_\beta \sin(\theta)  \\I_q &= -I_\alpha \sin\left(\theta\right) + I_\beta\cos\left(\theta\right)\end{aligned}$$
+</Frame>
+
+Comme le repère tourne à la même vitesse que le moteur, si le moteur tourne à régime stable, alors les courants $$I_d$$ et $$I_q$$deviennent des valeurs constantes !
+
+![Parkwaveforms](/images/parkwaveforms.png "Parkwaveforms")
