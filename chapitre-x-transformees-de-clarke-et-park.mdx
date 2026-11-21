@@ -75,3 +75,22 @@ I_c &= \cos\left(-\frac{2\pi}{3}\right)I_\alpha + \sin\left(-\frac{2\pi}{3}\righ
 A ce stade, les courants $$I_\alpha$$et $$I_\beta$$ sont toujours des sinusoïdes qui oscillent. Le problème du PI n'est donc pas encore résolu.
 
 ![Clarkewaveforms](/images/clarkewaveforms.png "Clarkewaveforms")
+
+# Transformée de Park (2 axes fixes → 2 axes tournants)
+
+C'est tout le génie de l'algorithme FOC; au lieu de regarder le moteur depuis l'extérieur (repère fixe), on va le regarder depuis le rotor.
+
+<Accordion title="Robert H. Park (1902–1994)">
+  <Columns cols={2}>
+    <Column>
+      Robert H. Park (1902–1994) était un ingénieur américain, reconnu pour ses contributions majeures à l'analyse et à la modélisation des machines électriques.
+
+      En 1929, il publia un article fondateur introduisant une transformation mathématique permettant de représenter les grandeurs électriques d'une machine dans un référentiel tournant, synchronisé avec le rotor. Cette approche, aujourd'hui connue sous le nom de _transformation de Park_, a profondément simplifié l'analyse des machines électriques en transformant des grandeurs sinusoïdales variables en grandeurs plus faciles à exploiter dans un référentiel adapté.
+    </Column>
+    <Column>
+      ![Robert E Park](/images/Robert_E._Park.jpg "Robert E Park")
+    </Column>
+  </Columns>
+
+  La transformation de Park constitue aujourd'hui l'un des fondements du _Field Oriented Control_ (FOC).
+</Accordion>
