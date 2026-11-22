@@ -80,6 +80,10 @@ export const FocDiagram = () => {
         onCancel={closeDialog}
         aria-label="Schéma FOC agrandi"
       >
+        <h2 style={{ margin: "0 0 0.35rem", color: "#000000" }}>FOC Overview</h2>
+        <p style={{ margin: "0 0 1rem", color: "#333333", fontSize: "0.95rem" }}>
+          Appuyez sur les cases du schéma pour accéder aux chapitres correspondants.
+        </p>
         <div className="foc-dialog__content">
           {svg ? <div dangerouslySetInnerHTML={{ __html: svg }} /> : <p>Chargement du schéma...</p>}
         </div>
