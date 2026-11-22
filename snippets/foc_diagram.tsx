@@ -23,6 +23,16 @@ export const FocDiagram = () => {
     }
   };
 
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      if (dialogRef.current && !dialogRef.current.open) {
+        dialogRef.current.showModal();
+      }
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <>
       <style>{`
@@ -67,7 +77,7 @@ export const FocDiagram = () => {
           />
         </button>
         <p style={{ textAlign: "center", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-          Cliquez sur le schéma pour l'agrandir. Cliquez en dehors pour fermer.
+          La fenêtre s'ouvre automatiquement. Cliquez sur le schéma pour la rouvrir après fermeture.
         </p>
       </div>
 
