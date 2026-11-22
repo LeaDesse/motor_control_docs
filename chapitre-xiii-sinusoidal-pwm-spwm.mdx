@@ -1,0 +1,76 @@
+---
+title: "CHAPITRE XIII : Sinusoïdal PWM (SPWM) "
+---
+
+A la sortie de Clarke inversé, on a les tensions sinusoïdales théoriques des trois phases. Il faut les convertir en signaux gérables par un microcontrôleur : des PWM.
+
+# Principe de fonctionnement
+
+Pour générer une tension moyenne sinusoïdale, il faut adapter le Compare Ratio en temps réel.
+
+A chaque interruption timer, on adapte le comparateur avec une sinusoïde de référence :
+
+- Lorsque la modulante est supérieure à la porteuse, le transistor HS est fermé (V<sub>a0</sub> = V<sub>bus</sub>).
+- Lorsque la modulante est inférieure, le transistor LS est fermé (V<sub>a0</sub> = 0V).
+
+<Frame>
+  ![SPWM](/images/SPWM.png "SPWM")
+</Frame>
+
+# Inconvénient
+
+<Columns cols={2}>
+  <Column>
+    On obtient donc une sinusoïde qui oscille autour de $$\frac{V_{bus}}{2}.$$
+
+    Cette sinusoïde est générée pour les 3 phases $$V_{a0}$$, $$V_{b0}$$ et $$V_{c0}$$. Elles sont décalées de 120 degrés les unes par rapport aux autres.
+  </Column>
+  <Column>
+    <Frame>
+      ![Triphase](/images/triphase.png "Triphase")
+    </Frame>
+  </Column>
+</Columns>
+
+<Columns cols={2}>
+  <Column>
+    <Frame>
+      ![Inconvenient Spwm Tension Composee](/images/inconvenient_spwm_tension_composee.png "Inconvenient Spwm Tension Composee")
+    </Frame>
+  </Column>
+  <Column>
+     
+
+    $$
+    \left\{
+\begin{aligned}
+V_{a0}(t)&=\frac{V_{bus}}{2} + \frac{V_{bus}}{2} \sin(\omega t) \\
+V_{b0}(t)&=\frac{V_{bus}}{2} + \frac{V_{bus}}{2} \sin(\omega t - \frac{2\pi}{3}) \\
+V_{c0}(t)&=\frac{V_{bus}}{2} + \frac{V_{bus}}{2} \sin(\omega t - \frac{4\pi}{3})  
+\end{aligned}
+\right.
+    $$
+  </Column>
+</Columns>
+
+$$
+\left\{
+\begin{aligned}
+U_{ab}(t)&=V_{a0}(t)-V_{b0}(t)=\sqrt{3}\frac{V_{bus}}{2}\sin(\omega t +\frac{\pi}{6}) \\
+U_{bc}(t)&=V_{b0}(t)-V_{c0}(t)=\sqrt{3}\frac{V_{bus}}{2}\sin(\omega t -\frac{\pi}{2}) \\
+U_{ca}(t)&=V_{c0}(t)-V_{a0}(t)=\sqrt{3}\frac{V_{bus}}{2}\sin(\omega t +\frac{5\pi}{6}) 
+\end{aligned}
+\right.
+$$
+
+<Tip>
+  **Un doute sur ces formules ?** Viens voir par [ici](/chapitre-iii-les-systemes-triphases) <Icon icon="😉" />
+</Tip>
+
+<Frame>
+  ![SPWM Courbes](/images/SPWM_courbes.png "SPWM Courbes")
+</Frame>
+
+<Danger>
+  On ne peut utiliser que $$\frac{\sqrt{3}}{2}V_{bus}$$! _Ça représente_ $$\approx$$ **_ 86.6% de_** $$V_{bus}$$_._
+</Danger>

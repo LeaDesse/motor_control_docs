@@ -54,7 +54,8 @@
       {
         "group": "LA MODULATION",
         "pages": [
-          "chapitre-xii-principe-de-la-pwm"
+          "chapitre-xii-principe-de-la-pwm",
+          "chapitre-xiii-sinusoidal-pwm-spwm"
         ]
       }
     ]
