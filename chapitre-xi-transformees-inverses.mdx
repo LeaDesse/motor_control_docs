@@ -43,9 +43,7 @@ $$
 on obtient :
 
 <Frame>
-  $$
-  V_\alpha = V_d\cos(\theta) - V_q\sin(\theta)
-  $$
+  $$V_\alpha = V_d\cos(\theta) - V_q\sin(\theta)$$
 </Frame>
 
 ## Calcul de $$V_\beta$$
@@ -80,11 +78,64 @@ $$
 on obtient :
 
 <Frame>
-  $$
-  V_\beta = V_d\sin(\theta) + V_q\cos(\theta)
-  $$
+  $$V_\beta = V_d\sin(\theta) + V_q\cos(\theta)$$
 </Frame>
 
 # Transformée de Clarke inverse
 
-On reprend les équations de Clarke (adaptées aux tensions)
+On reprend les équations de Clarke (adaptées aux tensions):
+
+$$
+\left\{
+\begin{aligned}
+V_\alpha &= V_a \\
+V_\beta &= \frac{1}{\sqrt{3}}(V_b - V_c)
+\end{aligned}
+\right.
+$$
+
+Dans un système triphasé équilibré on a :
+
+$$
+V_a+V_b+V_c=0
+$$
+
+## Calcul de $$V_a$$
+
+Directement à partir de la première équation:
+
+<Frame>
+  $$V_a = V_\alpha$$
+</Frame>
+
+## Calcul de $$V_b$$
+
+$$\left\{\begin{aligned}V_c &= -V_a - V_b \\ V_b &= V_c + \sqrt{3}V_\beta \end{aligned}\right.$$
+
+En combinant les deux:
+
+$$=> V_b = -V_\alpha - V_b + \sqrt{3}V_\beta $$
+
+$$=> 2V_b = -V_\alpha + \sqrt{3}V_\beta $$
+
+Finalement:
+
+<Frame>
+  $$V_b = -\frac{1}{2}V_\alpha + \frac{\sqrt{3}}{2}V_\beta$$
+</Frame>
+
+## Calcul de $$V_c$$
+
+$$\left\{\begin{aligned}V_b &= -V_a - V_c \\ V_c &= V_b - \sqrt{3}V_\beta \end{aligned}\right.$$
+
+En combinant les deux:
+
+$$=> V_c = -V_\alpha - V_c - \sqrt{3}V_\beta $$
+
+$$=> 2V_c = -V_\alpha - \sqrt{3}V_\beta $$
+
+Finalement:
+
+<Frame>
+  $$V_c = -\frac{1}{2}V_\alpha - \frac{\sqrt{3}}{2}V_\beta$$
+</Frame>
