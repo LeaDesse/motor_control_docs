@@ -1,0 +1,62 @@
+---
+title: "CHAPITRE XII : Principe de la PWM"
+---
+
+Dans le contrôle des moteurs brushless (PMSM / BLDC), deux grandes familles de modulation sont utilisées pour faire varier l'amplitude et la fréquence des sinusoïdes fondamentales : SPWM et SVPWM.
+
+Pour comprendre le fonctionnement de ces dernières, il faut déjà comprendre le fonctionnement d’une PWM classique.
+
+La **Modulation de Largeur d'Impulsion (MLI)** ou **PWM** (_Pulse Width Modulation_) est la technique fondamentale qui permet de piloter une charge électrique (comme la bobine d'un moteur) en faisant varier la valeur moyenne d'une tension continue fixe (Vbus) par un découpage à haute fréquence.
+
+# Principe de base : du Tout-ou-Rien au Continu Moyen
+
+On découpe la tension fixe Vbus à une fréquence de découpage constante (généralement entre 10kHz et 20kHz en contrôle moteur).
+
+La tension moyenne aperçue par la charge sur une période T<sub>pwm</sub> est directement proportionnelle au temps d'allumage T<sub>on</sub> :
+
+$$
+V_{moyen} = \alpha \cdot V_{bus}
+$$
+
+Où $$\alpha$$ est le **rapport cyclique** (_Duty Cycle_), défini par :
+
+$$
+\alpha = \frac{T_{on}}{T_{pwm}}
+$$
+
+avec $$0 ≤ \alpha ≤ 1$$
+
+# Tension lissée
+
+Les enroulements du moteur sont des bobines inductive (L). L'inductance s'oppose aux variations brusques du courant selon la loi : $$V_L = L \frac{di}{dt}$$.
+
+<Columns cols={2}>
+  <Column>
+    - Pendant T<sub>on</sub> : Le courant monte progressivement dans la bobine.
+
+    - Pendant T<sub>off </sub>: Le courant continue de circuler à travers les diodes de roue libre et descend progressivement.
+
+    Le moteur agit donc comme un filtre passe-bas naturel : le découpage rapide (plusieurs kilohertz) est lissé, et le courant résultant suit fidèlement la tension moyenne.
+  </Column>
+  <Column>
+    ![Tension Moyenne Pwm](/images/tension_moyenne_pwm.png "Tension Moyenne Pwm")
+  </Column>
+</Columns>
+
+# Mode de génération
+
+La génération d’une PWM est faite avec un timer et un seuil appelé « Compare Ratio ». Quand le compteur franchit le seuil (dans un sens ou dans l’autre), la PWM change de polarité.
+
+<Frame>
+  ![Pwm Generation](/images/pwm_generation.jpg "Pwm Generation")
+</Frame>
+
+- **TIMx_ARR (Auto-Reload Register) :** Fixe la période de la PWM (la fréquence de découpage f<sub>pwm</sub>).
+- **TIMx_CNT (Counter) :** Le compteur interne qui s'incrémente (ou décrémente) à chaque coup d'horloge.
+- **TIMx_CCRx (Capture/Compare Register) :** Il contient la valeur seuil qui définit le temps d'allumage T<sub>on</sub>.
+
+Ici, les PWM ont leurs fronts montants alignés (edge-aligned PWM). On pourrait aussi centrer les PWM (center-aligned PWM) en utilisant un compteur « up and down ».
+
+<Frame>
+  ![Edge Aligned Center Aligned](/images/edge_aligned_center_aligned.png "Edge Aligned Center Aligned")
+</Frame>

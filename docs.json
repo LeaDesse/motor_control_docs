@@ -53,7 +53,9 @@
       },
       {
         "group": "LA MODULATION",
-        "pages": []
+        "pages": [
+          "chapitre-xii-principe-de-la-pwm"
+        ]
       }
     ]
   },
