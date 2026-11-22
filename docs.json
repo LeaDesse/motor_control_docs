@@ -8,8 +8,8 @@
     "dark": "#FAD600"
   },
   "favicon": {
-    "light": "/images/evangile-logo-noText.svg",
-    "dark": "/images/evangile-logo-noText.svg"
+    "light": "/images/logo/evangile-logo-noText.svg",
+    "dark": "/images/logo/evangile-logo-noText.svg"
   },
   "navigation": {
     "global": {
@@ -56,8 +56,8 @@
     ]
   },
   "logo": {
-    "light": "/images/evangile-logo.svg",
-    "dark": "/images/evangile-logo.svg"
+    "light": "/images/logo/evangile-logo.svg",
+    "dark": "/images/logo/evangile-logo.svg"
   },
   "navbar": {
     "links": [
