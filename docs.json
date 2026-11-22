@@ -7,10 +7,7 @@
     "light": "#FAD600",
     "dark": "#FAD600"
   },
-  "favicon": {
-    "light": "/images/logo/evangile-logo-noText.svg",
-    "dark": "/images/logo/evangile-logo-noText.svg"
-  },
+  "favicon": "/images/logo/evangile-logo-noText.svg",
   "navigation": {
     "global": {
       "anchors": [
@@ -50,14 +47,16 @@
         "pages": [
           "vue-d-ensemble",
           "chapitre-ix-philosophie-et-principe",
-          "chapitre-x-transformees-de-clarke-et-park"
+          "chapitre-x-transformees-de-clarke-et-park",
+          "chapitre-xi-transformees-inverses"
         ]
       }
     ]
   },
   "logo": {
     "light": "/images/logo/evangile-logo.svg",
-    "dark": "/images/logo/evangile-logo.svg"
+    "dark": "/images/logo/evangile-logo.svg",
+    "href": "/"
   },
   "navbar": {
     "links": [

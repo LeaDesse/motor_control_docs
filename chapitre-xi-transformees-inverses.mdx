@@ -1,0 +1,90 @@
+---
+title: "CHAPITRE XI : Transformées inverses"
+---
+
+# Transformée de Park inverse
+
+On reprend les équations de Park (adaptées aux tensions):
+
+$$
+\left\{
+\begin{aligned}
+V_d &= V_\alpha \cos(\theta) + V_\beta \sin(\theta) \\
+V_q &= -V_\alpha \sin(\theta) + V_\beta \cos(\theta)
+\end{aligned}
+\right.
+$$
+
+## Calcul de $$V_\alpha$$
+
+Afin d'isoler $$V_\alpha$$, on multiplie la première équation par $$\cos(\theta)$$ et la seconde par $$\sin(\theta)$$ :
+
+$$
+\left\{
+\begin{aligned}
+V_d \cos(\theta) &= V_\alpha \cos^2(\theta) + V_\beta \sin(\theta)\cos(\theta) \\
+V_q \sin(\theta) &= -V_\alpha \sin^2(\theta) + V_\beta \sin(\theta)\cos(\theta)
+\end{aligned}
+\right.
+$$
+
+On soustrait ensuite la deuxième équation à la première :
+
+$$
+\begin{aligned}V_d\cos(\theta) - V_q\sin(\theta) &= V_\alpha \left(\cos^2(\theta) + \sin^2(\theta)\right) + V_\beta \left(\sin(\theta)\cos(\theta) - \sin(\theta)\cos(\theta)\right)\end{aligned}
+$$
+
+En utilisant l'identité trigonométrique :
+
+$$
+\cos^2(\theta) + \sin^2(\theta) = 1
+$$
+
+on obtient :
+
+<Frame>
+  $$
+  V_\alpha = V_d\cos(\theta) - V_q\sin(\theta)
+  $$
+</Frame>
+
+## Calcul de $$V_\beta$$
+
+Afin d'isoler $$V_\beta$$, on multiplie la première équation par $$\sin(\theta)$$ et la seconde par $$\cos(\theta)$$ :
+
+$$
+\left\{
+\begin{aligned}
+V_d \sin(\theta) &= V_\alpha \cos(\theta)\sin(\theta) + V_\beta \sin^2(\theta) \\
+V_q \cos(\theta) &= -V_\alpha \sin(\theta)\cos(\theta) + V_\beta \cos^2(\theta)
+\end{aligned}
+\right.
+$$
+
+On additionne ensuite les deux équations :
+
+$$
+\begin{aligned}
+V_d\sin(\theta) + V_q\cos(\theta)
+&= V_\alpha \left(\cos(\theta)\sin(\theta) - \sin(\theta)\cos(\theta)\right) \
+ + V_\beta \left(\sin^2(\theta) + \cos^2(\theta)\right)
+\end{aligned}
+$$
+
+Les termes contenant $$V_\alpha$$ s'annulent. En utilisant l'identité trigonométrique :
+
+$$
+\sin^2(\theta) + \cos^2(\theta) = 1
+$$
+
+on obtient :
+
+<Frame>
+  $$
+  V_\beta = V_d\sin(\theta) + V_q\cos(\theta)
+  $$
+</Frame>
+
+# Transformée de Clarke inverse
+
+On reprend les équations de Clarke (adaptées aux tensions)
