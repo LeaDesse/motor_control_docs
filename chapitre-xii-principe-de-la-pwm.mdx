@@ -60,3 +60,15 @@ Ici, les PWM ont leurs fronts montants alignés (edge-aligned PWM). On pourrait 
 <Frame>
   ![Edge Aligned Center Aligned](/images/edge_aligned_center_aligned.png "Edge Aligned Center Aligned")
 </Frame>
+
+# Advanced-Control Timers
+
+Sur les STM32, il existe des timers standards (TIM2, TIM3...) et des **Advanced-Control Timers** (TIM1, TIM8, TIM20). Ces derniers sont spécialement conçus pour le contrôle de moteurs triphasés et l'électronique de puissance.
+
+Voici les fonctionnalités matérielles uniques qu'ils apportent :
+
+- **Génération de sorties complémentaires (CHx et CHxN) :** Un bras d'onduleur a besoin de deux commandes, une pour le MOSFET High-Side et une pour le Low-Side LS. Les Advanced Timers génèrent automatiquement la paire de signaux opposés à partir d'un seul registre `CCR1`.
+- **Générateur de Temps Mort Intégré (Dead-Time Generator - DTG) :** Pour éviter le court-circuit de bras (shoot-through), le matériel insère un retard paramétrable via le registre `BDTR` (Break and Dead-Time Register). Le calcul du temps mort est géré à 100 % par le matériel sans aucune surcharge CPU.
+- **Entrée d'Arrêt d'Urgence (Break Input / BRK) :** Le timer possède une broche matérielle dédiée reliée aux protections d'intensité. Si un surcourant est détecté, l'entrée _Break_ désactive immédiatement les grilles de tous les MOSFETs en quelques nanosecondes, indépendamment du code logiciel.
+- **Synchronisation matérielle avec l'ADC (Trigger Output - TRGO) :** En contrôle vectoriel (FOC), il est impératif de mesurer le courant au milieu des impulsions PWM (lorsque le bruit de commutation est minimal). L'Advanced Timer génère un signal d'amorce (_Trigger TRGO_) à la crête du compteur (`CNT == ARR` ou `CNT == 0`) pour lancer la conversion de l'ADC automatiquement sans interruption CPU.
+- **Gestion de la commutation 6-Step (Registre COM / Event) :** Pour le contrôle trapézoïdal (6-Step), le registre `COM` (_Commutation Event_) permet de pré-charger la configuration des 6 transistors pour l'état suivant et d'appliquer le changement de pas simultanément sur un événement d'amorce externe (ex. signal des capteurs à effet Hall).
