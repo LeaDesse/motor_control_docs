@@ -43,6 +43,8 @@ A chaque interruption timer, on adapte le comparateur avec une sinusoïde de ré
 
      
 
+     
+
     $$
     \left\{
 \begin{aligned}
@@ -76,3 +78,7 @@ $$
 <Danger>
   On ne peut utiliser que $$\frac{\sqrt{3}}{2}V_{bus}$$! Ça représente $$\approx$$ **86.6% de** $$V_{bus}$$.
 </Danger>
+
+Afin d'améliorer l'exploitation de la tension du bus DC et d'augmenter les performances de l'onduleur, une autre approche peut être utilisée : la modulation vectorielle spatiale (SVPWM – Space Vector Pulse Width Modulation).
+
+C'est cette méthode que nous allons étudier dans le chapitre suivant. Elle repose sur une représentation vectorielle des tensions de sortie de l'onduleur et sur une répartition optimisée des temps de commutation.
